@@ -1,26 +1,111 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* colors */
+  --color-void: #03020a;
+  --color-ink-100: #f5f5f7;
+  --color-ink-400: #b8b6c4;
+  --color-ink-600: #8a8896;
+  --color-ink-800: #4a4856;
+  --color-signal-violet: #7c5cff;
+  --color-signal-violet-dim: #4a3899;
+  --color-signal-cyan: #00c2d1;
+  --color-signal-cyan-dim: #0a5b62;
+  --color-signal-amber: #ffb020;
+
+  /* fonts */
+  --font-display: var(--font-syne), sans-serif;
+  --font-numeric: var(--font-space-grotesk), monospace;
+  --font-body: var(--font-inter), sans-serif;
+
+  /* shadows (glow borders) */
+  --shadow-glow-violet: 0 0 0 1px rgba(124, 92, 255, 0.35), 0 0 24px rgba(124, 92, 255, 0.15);
+  --shadow-glow-cyan: 0 0 0 1px rgba(0, 194, 209, 0.35), 0 0 24px rgba(0, 194, 209, 0.15);
+  --shadow-glow-violet-lg: 0 0 0 1px rgba(124, 92, 255, 0.4), 0 0 60px rgba(124, 92, 255, 0.25);
+  --shadow-glow-cyan-lg: 0 0 0 1px rgba(0, 194, 209, 0.4), 0 0 60px rgba(0, 194, 209, 0.2);
+
+  /* letter spacing */
+  --tracking-widest2: 0.32em;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    background: #03020a;
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-void text-ink-100 font-body antialiased;
+  }
+  ::selection {
+    background: rgba(124, 92, 255, 0.35);
+    color: #fff;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #03020a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(124, 92, 255, 0.25);
+    border-radius: 999px;
+    border: 2px solid #03020a;
+  }
+  :focus-visible {
+    outline: 1px solid #00c2d1;
+    outline-offset: 3px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom utilities (v4 @utility — usable directly as classNames, unlike @layer components + @apply) */
+@utility glass {
+  position: relative;
+  background-color: rgb(255 255 255 / 0.04);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgb(255 255 255 / 0.06);
+}
+
+@utility glass-violet {
+  position: relative;
+  background-color: rgb(255 255 255 / 0.04);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(124, 92, 255, 0.25);
+  box-shadow: var(--shadow-glow-violet);
+}
+
+@utility glass-cyan {
+  position: relative;
+  background-color: rgb(255 255 255 / 0.04);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 194, 209, 0.25);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+@utility numeral {
+  font-family: var(--font-numeric);
+  font-variant-numeric: tabular-nums;
+}
+
+@utility eyebrow {
+  font-family: var(--font-numeric);
+  font-size: 10px;
+  letter-spacing: var(--tracking-widest2);
+  text-transform: uppercase;
+  color: var(--color-ink-600);
+}
+
+@utility bg-void-radial {
+  background-image: radial-gradient(120% 100% at 50% -10%, rgba(124, 92, 255, 0.14) 0%, rgba(3, 2, 10, 0) 55%),
+    radial-gradient(80% 60% at 90% 10%, rgba(0, 194, 209, 0.1) 0%, rgba(3, 2, 10, 0) 60%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

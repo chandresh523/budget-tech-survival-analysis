@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MERIDIAN — Constellation Intelligence UI
 
-## Getting Started
+Dark-mode, glass/glow orbital telemetry interface. Next.js (App Router) + Tailwind + Framer Motion + Recharts.
 
-First, run the development server:
+## Install
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx create-next-app@latest meridian-ui --typescript --tailwind --app
+cd meridian-ui
+npm install framer-motion recharts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Drop these files in, replacing the generated defaults:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+tailwind.config.ts
+app/globals.css
+app/layout.tsx
+app/page.tsx
+components/hero-orbital.tsx
+components/telemetry-stat.tsx
+components/telemetry-grid.tsx
+components/orbit-scroll-section.tsx
+components/constellation-table.tsx
+lib/mock-data.ts
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Then `npm run dev`.
 
-## Learn More
+## Components & data shapes
 
-To learn more about Next.js, take a look at the following resources:
+**`<HeroOrbital />`** — all copy is optional props (`eyebrow`, `title`, `subtitle`, `liveLabel`, `catalogId`). The orbit-ring HUD behind the headline is scroll-driven via `useTransform`, not a CSS loop.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**`<TelemetryGrid data={...} />`** — pass an array of:
+```ts
+{
+  id: string;              // shown as the card's catalog label
+  label: string;
+  value: number | string;
+  unit?: string;
+  delta?: number;          // signed change, colored by status
+  status?: "nominal" | "watch" | "critical";
+  series?: { t: string | number; v: number }[]; // sparkline
+  accent?: "violet" | "cyan";
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**`<OrbitScrollSection />`** — accepts `lines: { label: string; value: string }[]` for the central readout. The three orbit-line layers behind it move at independently mapped scroll speeds.
 
-## Deploy on Vercel
+**`<ConstellationTable rows={...} />`** — pass an array of:
+```ts
+{
+  norad: string;
+  name: string;
+  altitudeKm: number;
+  inclinationDeg: number;
+  status: "nominal" | "watch" | "critical";
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Swap `lib/mock-data.ts` for a fetch/query and every downstream component updates — nothing else needs to change.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+
+- `prefers-reduced-motion` is respected globally (see `app/globals.css`).
+- All glow/glass treatments are centralized as Tailwind component classes (`.glass`, `.glass-violet`, `.glass-cyan`) so the visual language stays consistent as you add sections.
+- Status colors (`nominal` / `watch` / `critical`) are the only place amber/red appear — kept as real signal, not decoration.
