@@ -1,72 +1,58 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-
-export type SatelliteRow = {
-  norad: string; // e.g. "44714"
+interface TableRow {
+  norad: string;
   name: string;
   altitudeKm: number;
   inclinationDeg: number;
-  status: "nominal" | "watch" | "critical";
-};
+  status: string;
+}
 
-export type ConstellationTableProps = {
-  eyebrow?: string;
-  title?: string;
-  rows: SatelliteRow[]; // <- pipe your JSON array straight in here
-};
-
-const statusStyles: Record<SatelliteRow["status"], string> = {
-  nominal: "text-signal-cyan border-signal-cyan/30 bg-signal-cyan/5",
-  watch: "text-signal-amber border-signal-amber/30 bg-signal-amber/5",
-  critical: "text-red-400 border-red-400/30 bg-red-400/5",
-};
-
-export default function ConstellationTable({
-  eyebrow = "CATALOG",
-  title = "Tracked assets",
-  rows,
-}: ConstellationTableProps) {
+export default function ConstellationTable({ rows }: { rows: TableRow[] }) {
   return (
-    <section className="relative bg-void px-6 py-28 md:px-14">
-      <div className="mb-10">
-        <span className="eyebrow">{eyebrow}</span>
-        <h2 className="mt-3 font-display text-4xl font-extrabold uppercase leading-none text-ink-100 md:text-6xl">
-          {title}
+    <div className="w-full max-w-6xl mx-auto px-6 py-12">
+      <div className="mb-6">
+        <span className="eyebrow text-cyan-400">RELIABILITY LEDGER</span>
+        <h2 className="font-display text-2xl font-bold uppercase tracking-tight text-white mt-1">
+          Hardware Stream Summary &amp; Concordance Index
         </h2>
+        <p className="font-mono text-xs text-gray-400 mt-1">
+          Comprehensive statistical performance metrics across all tracked budget tech categories.
+        </p>
       </div>
 
-      <div className="glass overflow-hidden rounded-2xl">
-        {/* header row */}
-        <div className="hidden grid-cols-[120px_1fr_140px_140px_120px] gap-4 border-b border-white/[0.06] px-6 py-4 md:grid">
-          {["NORAD ID", "ASSET", "ALTITUDE", "INCLINATION", "STATUS"].map((h) => (
-            <span key={h} className="eyebrow">
-              {h}
-            </span>
-          ))}
-        </div>
-
-        {rows.map((row, i) => (
-          <motion.div
-            key={row.norad}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-10%" }}
-            transition={{ duration: 0.4, delay: i * 0.03 }}
-            className="grid grid-cols-2 gap-3 border-b border-white/[0.04] px-6 py-4 last:border-0 md:grid-cols-[120px_1fr_140px_140px_120px] md:items-center md:gap-4"
-          >
-            <span className="numeral text-sm text-ink-600">{row.norad}</span>
-            <span className="font-body text-sm text-ink-100">{row.name}</span>
-            <span className="numeral text-sm text-ink-400">{row.altitudeKm} km</span>
-            <span className="numeral text-sm text-ink-400">{row.inclinationDeg}°</span>
-            <span
-              className={`w-fit rounded-full border px-3 py-1 text-[10px] uppercase tracking-widest2 ${statusStyles[row.status]}`}
-            >
-              {row.status}
-            </span>
-          </motion.div>
-        ))}
+      <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-xl overflow-x-auto">
+        <table className="w-full text-left font-mono text-xs">
+          <thead>
+            <tr className="border-b border-white/10 text-cyan-400">
+              <th className="pb-3 font-normal uppercase tracking-wider">Asset ID</th>
+              <th className="pb-3 font-normal uppercase tracking-wider">Device Stream</th>
+              <th className="pb-3 font-normal uppercase tracking-wider">Analyzed Records</th>
+              <th className="pb-3 font-normal uppercase tracking-wider">Concordance (C-IDX)</th>
+              <th className="pb-3 font-normal uppercase tracking-wider">Status</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-white/5 text-gray-300">
+            {rows.map((row, idx) => (
+              <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
+                <td className="py-3 text-cyan-300">{row.norad}</td>
+                <td className="py-3 font-bold text-white">{row.name}</td>
+                <td className="py-3">{row.altitudeKm} units</td>
+                <td className="py-3 text-violet-400 font-bold">{Number(row.inclinationDeg).toFixed(3)}</td>
+                <td className="py-3">
+                  <span className={`px-2.5 py-1 rounded text-[10px] uppercase font-bold ${
+                    row.status === 'nominal' 
+                      ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
+                      : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
+                  }`}>
+                    {row.status}
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-    </section>
+    </div>
   );
 }

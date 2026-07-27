@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useCountUp } from "@/lib/use-count-up";
+import { useCountUp } from "@/hooks/use-count-up";
 
 export type TelemetryBentoProps = {
   tracked?: number;

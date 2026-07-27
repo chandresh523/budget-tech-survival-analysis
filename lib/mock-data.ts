@@ -1,60 +1,33 @@
+import dashboardData from '@/public/dashboard_data.json';
 import { TelemetryStatProps } from "@/components/telemetry-stat";
 import { SatelliteRow } from "@/components/constellation-table";
 
-const spark = (base: number, variance: number) =>
-  Array.from({ length: 12 }, (_, i) => ({
-    t: i,
-    v: base + Math.sin(i / 1.5) * variance + (Math.random() - 0.5) * variance * 0.4,
-  }));
+// Transform your Python ML pipeline JSON into Wrick's telemetry component props with UNIQUE IDs
+export const telemetryData: Omit<TelemetryStatProps, "index">[] = Object.entries(dashboardData).map(([device, metrics]: [string, any], i) => {
+  const rsf = metrics.model_comparison?.rsf_c_index;
+  const cox = metrics.model_comparison?.cox_ph_c_index;
+  const score = rsf !== null && rsf !== undefined ? rsf : (cox !== null && cox !== undefined ? cox : 0.5);
+  
+  return {
+    id: `DEV-${device.toUpperCase()}-${i}`, // Unique ID fix for SAT-014 bug
+    label: `${device.toUpperCase()} Survival Model`,
+    value: score,
+    unit: "C-Idx",
+    delta: metrics.active_failures || 0,
+    status: score > 0.8 ? "nominal" : score > 0.6 ? "watch" : "critical",
+    accent: i % 2 === 0 ? "cyan" : "violet",
+    series: Array.from({ length: 12 }, (_, idx) => ({
+      t: idx,
+      v: Number((score + Math.sin(idx / 1.5) * 0.05).toFixed(3)),
+    })),
+  };
+});
 
-export const telemetryData: Omit<TelemetryStatProps, "index">[] = [
-  {
-    id: "SAT-014",
-    label: "Constellation coverage",
-    value: 98.2,
-    unit: "%",
-    delta: 0.4,
-    status: "nominal",
-    accent: "cyan",
-    series: spark(98, 1.5),
-  },
-  {
-    id: "SAT-014",
-    label: "Mean orbital velocity",
-    value: "7.61",
-    unit: "km/s",
-    delta: -0.02,
-    status: "nominal",
-    accent: "violet",
-    series: spark(7.6, 0.1),
-  },
-  {
-    id: "SAT-014",
-    label: "Active ground links",
-    value: 38,
-    unit: "/ 41",
-    delta: -1,
-    status: "watch",
-    accent: "cyan",
-    series: spark(38, 3),
-  },
-  {
-    id: "SAT-014",
-    label: "Debris proximity alerts",
-    value: 3,
-    unit: "flags",
-    delta: 2,
-    status: "critical",
-    accent: "violet",
-    series: spark(2, 2),
-  },
-];
-
-export const constellationRows: SatelliteRow[] = [
-  { norad: "44714", name: "MERIDIAN-07", altitudeKm: 547, inclinationDeg: 53.2, status: "nominal" },
-  { norad: "44715", name: "MERIDIAN-08", altitudeKm: 549, inclinationDeg: 53.2, status: "nominal" },
-  { norad: "44821", name: "MERIDIAN-12", altitudeKm: 541, inclinationDeg: 53.1, status: "watch" },
-  { norad: "45093", name: "MERIDIAN-19", altitudeKm: 552, inclinationDeg: 53.3, status: "nominal" },
-  { norad: "45114", name: "MERIDIAN-21", altitudeKm: 538, inclinationDeg: 53.0, status: "critical" },
-  { norad: "45201", name: "MERIDIAN-24", altitudeKm: 546, inclinationDeg: 53.2, status: "nominal" },
-];
+// Transform your hardware telemetry categories into Wrick's table rows
+export const constellationRows: SatelliteRow[] = Object.entries(dashboardData).map(([device, metrics]: [string, any], i) => ({
+  norad: `HW-44${700 + i}`,
+  name: device.toUpperCase(),
+  altitudeKm: metrics.analyzed_records || 0,
+  inclinationDeg: metrics.model_comparison?.rsf_c_index || 0,
+  status: metrics.model_comparison?.rsf_c_index ? "nominal" : "critical",
+}));
