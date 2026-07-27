@@ -37,7 +37,7 @@ export default function Home() {
           value: rsf,
           unit: "C-IDX",
           delta: val.active_failures || val.valid_records || 0,
-          status: rsf > 0.8 ? "nominal" : "critical",
+          status: (rsf > 0.8 ? "nominal" : "critical") as "nominal" | "critical" | "watch",
         };
       })
     : [];
