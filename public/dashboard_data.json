@@ -1,133 +1,3313 @@
 {
     "tws": {
         "model_comparison": {
-            "cox_ph_c_index": 0.711,
-            "rsf_c_index": 0.883
+            "cox_ph_c_index": 0.664,
+            "rsf_c_index": 0.879,
+            "fit_state": "ok",
+            "fit_note": null
         },
         "hazard_ratios": {
-            "tws_EBD6": 0.98,
-            "tws_EBD7": 0.69
+            "tws_EBD6": 1.0,
+            "tws_EBD7": 0.72
         },
-        "total_records": 39,
-        "analyzed_records": 35,
+        "total_records": 42,
+        "analyzed_records": 37,
         "active_failures": 4,
-        "censored_data": 35
+        "censored_data": 38,
+        "analyzed_failures": 3,
+        "analyzed_censored": 34,
+        "km_curve": {
+            "label": "tws",
+            "estimable": true,
+            "reason": null,
+            "n": 42,
+            "events": 4,
+            "censored": 38,
+            "points": [
+                {
+                    "month": 0.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 42
+                },
+                {
+                    "month": 3.0,
+                    "survival": 0.9762,
+                    "lower": 0.8428,
+                    "upper": 0.9966,
+                    "at_risk": 41
+                },
+                {
+                    "month": 6.0,
+                    "survival": 0.9762,
+                    "lower": 0.8428,
+                    "upper": 0.9966,
+                    "at_risk": 37
+                },
+                {
+                    "month": 9.0,
+                    "survival": 0.9483,
+                    "lower": 0.8077,
+                    "upper": 0.9869,
+                    "at_risk": 35
+                },
+                {
+                    "month": 12.0,
+                    "survival": 0.9483,
+                    "lower": 0.8077,
+                    "upper": 0.9869,
+                    "at_risk": 30
+                },
+                {
+                    "month": 18.0,
+                    "survival": 0.9088,
+                    "lower": 0.7359,
+                    "upper": 0.9706,
+                    "at_risk": 24
+                },
+                {
+                    "month": 24.0,
+                    "survival": 0.9088,
+                    "lower": 0.7359,
+                    "upper": 0.9706,
+                    "at_risk": 18
+                },
+                {
+                    "month": 30.0,
+                    "survival": 0.852,
+                    "lower": 0.632,
+                    "upper": 0.9456,
+                    "at_risk": 16
+                },
+                {
+                    "month": 36.0,
+                    "survival": 0.852,
+                    "lower": 0.632,
+                    "upper": 0.9456,
+                    "at_risk": 14
+                },
+                {
+                    "month": 48.0,
+                    "survival": 0.852,
+                    "lower": 0.632,
+                    "upper": 0.9456,
+                    "at_risk": 9
+                },
+                {
+                    "month": 156.0,
+                    "survival": 0.852,
+                    "lower": 0.632,
+                    "upper": 0.9456,
+                    "at_risk": 1
+                }
+            ],
+            "median_survival_months": null,
+            "restricted_mean_months": 22.81,
+            "max_followup_months": 156.0
+        }
     },
     "headphones": {
         "model_comparison": {
-            "cox_ph_c_index": 0.849,
-            "rsf_c_index": 0.94
+            "cox_ph_c_index": 0.84,
+            "rsf_c_index": 0.923,
+            "fit_state": "ok",
+            "fit_note": null
         },
         "hazard_ratios": {
-            "headphones_HP6": 0.66,
+            "headphones_HP6": 0.61,
             "headphones_HP7": 0.75
         },
-        "total_records": 33,
-        "analyzed_records": 31,
-        "active_failures": 7,
-        "censored_data": 26
+        "total_records": 35,
+        "analyzed_records": 33,
+        "active_failures": 9,
+        "censored_data": 26,
+        "analyzed_failures": 8,
+        "analyzed_censored": 25,
+        "km_curve": {
+            "label": "headphones",
+            "estimable": true,
+            "reason": null,
+            "n": 35,
+            "events": 9,
+            "censored": 26,
+            "points": [
+                {
+                    "month": 0.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 35
+                },
+                {
+                    "month": 3.0,
+                    "survival": 0.9714,
+                    "lower": 0.814,
+                    "upper": 0.9959,
+                    "at_risk": 33
+                },
+                {
+                    "month": 6.0,
+                    "survival": 0.9401,
+                    "lower": 0.7806,
+                    "upper": 0.9847,
+                    "at_risk": 29
+                },
+                {
+                    "month": 9.0,
+                    "survival": 0.8753,
+                    "lower": 0.7003,
+                    "upper": 0.9514,
+                    "at_risk": 29
+                },
+                {
+                    "month": 12.0,
+                    "survival": 0.8753,
+                    "lower": 0.7003,
+                    "upper": 0.9514,
+                    "at_risk": 25
+                },
+                {
+                    "month": 18.0,
+                    "survival": 0.7831,
+                    "lower": 0.5715,
+                    "upper": 0.8987,
+                    "at_risk": 19
+                },
+                {
+                    "month": 24.0,
+                    "survival": 0.7831,
+                    "lower": 0.5715,
+                    "upper": 0.8987,
+                    "at_risk": 15
+                },
+                {
+                    "month": 30.0,
+                    "survival": 0.7179,
+                    "lower": 0.4787,
+                    "upper": 0.8614,
+                    "at_risk": 12
+                },
+                {
+                    "month": 36.0,
+                    "survival": 0.6461,
+                    "lower": 0.3898,
+                    "upper": 0.8167,
+                    "at_risk": 10
+                },
+                {
+                    "month": 48.0,
+                    "survival": 0.6461,
+                    "lower": 0.3898,
+                    "upper": 0.8167,
+                    "at_risk": 8
+                },
+                {
+                    "month": 109.0,
+                    "survival": 0.4307,
+                    "lower": 0.0944,
+                    "upper": 0.7403,
+                    "at_risk": 1
+                }
+            ],
+            "median_survival_months": 97.0,
+            "restricted_mean_months": 21.22,
+            "max_followup_months": 109.0
+        }
     },
     "cables": {
         "model_comparison": {
-            "cox_ph_c_index": null,
-            "rsf_c_index": null
+            "cox_ph_c_index": 1.0,
+            "rsf_c_index": 1.0,
+            "fit_state": "ok",
+            "fit_note": null
         },
-        "hazard_ratios": {},
-        "total_records": 47,
-        "analyzed_records": 42,
-        "active_failures": 0,
-        "censored_data": 47
+        "hazard_ratios": {
+            "cables_CBL6": 0.94,
+            "cables_CBL7": 1.01
+        },
+        "total_records": 50,
+        "analyzed_records": 43,
+        "active_failures": 1,
+        "censored_data": 49,
+        "analyzed_failures": 1,
+        "analyzed_censored": 42,
+        "km_curve": {
+            "label": "cables",
+            "estimable": true,
+            "reason": null,
+            "n": 50,
+            "events": 1,
+            "censored": 49,
+            "points": [
+                {
+                    "month": 0.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 50
+                },
+                {
+                    "month": 3.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 49
+                },
+                {
+                    "month": 6.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 47
+                },
+                {
+                    "month": 9.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 43
+                },
+                {
+                    "month": 12.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 37
+                },
+                {
+                    "month": 18.0,
+                    "survival": 0.9655,
+                    "lower": 0.7795,
+                    "upper": 0.9951,
+                    "at_risk": 29
+                },
+                {
+                    "month": 24.0,
+                    "survival": 0.9655,
+                    "lower": 0.7795,
+                    "upper": 0.9951,
+                    "at_risk": 24
+                },
+                {
+                    "month": 30.0,
+                    "survival": 0.9655,
+                    "lower": 0.7795,
+                    "upper": 0.9951,
+                    "at_risk": 15
+                },
+                {
+                    "month": 36.0,
+                    "survival": 0.9655,
+                    "lower": 0.7795,
+                    "upper": 0.9951,
+                    "at_risk": 13
+                },
+                {
+                    "month": 48.0,
+                    "survival": 0.9655,
+                    "lower": 0.7795,
+                    "upper": 0.9951,
+                    "at_risk": 9
+                },
+                {
+                    "month": 100.0,
+                    "survival": 0.9655,
+                    "lower": 0.7795,
+                    "upper": 0.9951,
+                    "at_risk": 1
+                }
+            ],
+            "median_survival_months": null,
+            "restricted_mean_months": 23.79,
+            "max_followup_months": 100.0
+        }
     },
     "gwmouse": {
         "model_comparison": {
-            "cox_ph_c_index": 0.82,
-            "rsf_c_index": 0.86
+            "cox_ph_c_index": 0.827,
+            "rsf_c_index": 0.865,
+            "fit_state": "ok",
+            "fit_note": null
         },
         "hazard_ratios": {
             "gwmouse_GWM6": 1.25,
-            "gwmouse_GWM7": 1.48
+            "gwmouse_GWM7": 1.49
         },
         "total_records": 19,
         "analyzed_records": 15,
         "active_failures": 3,
-        "censored_data": 16
+        "censored_data": 16,
+        "analyzed_failures": 2,
+        "analyzed_censored": 13,
+        "km_curve": {
+            "label": "gwmouse",
+            "estimable": true,
+            "reason": null,
+            "n": 19,
+            "events": 3,
+            "censored": 16,
+            "points": [
+                {
+                    "month": 0.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 19
+                },
+                {
+                    "month": 3.0,
+                    "survival": 0.8947,
+                    "lower": 0.6408,
+                    "upper": 0.9726,
+                    "at_risk": 17
+                },
+                {
+                    "month": 6.0,
+                    "survival": 0.8947,
+                    "lower": 0.6408,
+                    "upper": 0.9726,
+                    "at_risk": 16
+                },
+                {
+                    "month": 9.0,
+                    "survival": 0.8388,
+                    "lower": 0.5788,
+                    "upper": 0.9451,
+                    "at_risk": 16
+                },
+                {
+                    "month": 12.0,
+                    "survival": 0.8388,
+                    "lower": 0.5788,
+                    "upper": 0.9451,
+                    "at_risk": 14
+                },
+                {
+                    "month": 18.0,
+                    "survival": 0.8388,
+                    "lower": 0.5788,
+                    "upper": 0.9451,
+                    "at_risk": 13
+                },
+                {
+                    "month": 24.0,
+                    "survival": 0.8388,
+                    "lower": 0.5788,
+                    "upper": 0.9451,
+                    "at_risk": 11
+                },
+                {
+                    "month": 30.0,
+                    "survival": 0.8388,
+                    "lower": 0.5788,
+                    "upper": 0.9451,
+                    "at_risk": 8
+                },
+                {
+                    "month": 36.0,
+                    "survival": 0.8388,
+                    "lower": 0.5788,
+                    "upper": 0.9451,
+                    "at_risk": 6
+                },
+                {
+                    "month": 48.0,
+                    "survival": 0.8388,
+                    "lower": 0.5788,
+                    "upper": 0.9451,
+                    "at_risk": 6
+                },
+                {
+                    "month": 95.0,
+                    "survival": 0.8388,
+                    "lower": 0.5788,
+                    "upper": 0.9451,
+                    "at_risk": 1
+                }
+            ],
+            "median_survival_months": null,
+            "restricted_mean_months": 20.79,
+            "max_followup_months": 95.0
+        }
     },
     "smartwatch": {
         "model_comparison": {
-            "cox_ph_c_index": 0.808,
-            "rsf_c_index": 0.923
+            "cox_ph_c_index": 0.833,
+            "rsf_c_index": 0.933,
+            "fit_state": "ok",
+            "fit_note": null
         },
         "hazard_ratios": {
             "smartwatch_SW6": 1.09,
             "smartwatch_SW7": 1.34
         },
-        "total_records": 26,
-        "analyzed_records": 20,
+        "total_records": 28,
+        "analyzed_records": 22,
         "active_failures": 2,
-        "censored_data": 24
+        "censored_data": 26,
+        "analyzed_failures": 2,
+        "analyzed_censored": 20,
+        "km_curve": {
+            "label": "smartwatch",
+            "estimable": true,
+            "reason": null,
+            "n": 28,
+            "events": 2,
+            "censored": 26,
+            "points": [
+                {
+                    "month": 0.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 28
+                },
+                {
+                    "month": 3.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 27
+                },
+                {
+                    "month": 6.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 27
+                },
+                {
+                    "month": 9.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 26
+                },
+                {
+                    "month": 12.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 24
+                },
+                {
+                    "month": 18.0,
+                    "survival": 0.913,
+                    "lower": 0.6949,
+                    "upper": 0.9775,
+                    "at_risk": 23
+                },
+                {
+                    "month": 24.0,
+                    "survival": 0.913,
+                    "lower": 0.6949,
+                    "upper": 0.9775,
+                    "at_risk": 18
+                },
+                {
+                    "month": 30.0,
+                    "survival": 0.913,
+                    "lower": 0.6949,
+                    "upper": 0.9775,
+                    "at_risk": 17
+                },
+                {
+                    "month": 36.0,
+                    "survival": 0.913,
+                    "lower": 0.6949,
+                    "upper": 0.9775,
+                    "at_risk": 15
+                },
+                {
+                    "month": 48.0,
+                    "survival": 0.913,
+                    "lower": 0.6949,
+                    "upper": 0.9775,
+                    "at_risk": 11
+                },
+                {
+                    "month": 100.0,
+                    "survival": 0.913,
+                    "lower": 0.6949,
+                    "upper": 0.9775,
+                    "at_risk": 1
+                }
+            ],
+            "median_survival_months": null,
+            "restricted_mean_months": 23.48,
+            "max_followup_months": 100.0
+        }
     },
     "usbdrive": {
         "model_comparison": {
             "cox_ph_c_index": null,
-            "rsf_c_index": null
+            "rsf_c_index": null,
+            "fit_state": "no_events",
+            "fit_note": "No failures recorded across 10 analysed usbdrive records \u2014 survival models are unidentifiable."
         },
         "hazard_ratios": {},
         "total_records": 13,
         "analyzed_records": 10,
         "active_failures": 0,
-        "censored_data": 13
+        "censored_data": 13,
+        "analyzed_failures": 0,
+        "analyzed_censored": 10,
+        "km_curve": {
+            "label": "usbdrive",
+            "estimable": false,
+            "reason": "only 0 observed failure(s) across 13 record(s)",
+            "n": 13,
+            "events": 0,
+            "points": [],
+            "median_survival_months": null,
+            "restricted_mean_months": null
+        }
     },
     "wmouse": {
         "model_comparison": {
             "cox_ph_c_index": 1.0,
-            "rsf_c_index": 1.0
+            "rsf_c_index": 1.0,
+            "fit_state": "ok",
+            "fit_note": null
         },
         "hazard_ratios": {
-            "wmouse_WM6": 1.12,
+            "wmouse_WM6": 1.11,
             "wmouse_WM7": 0.55
         },
-        "total_records": 24,
-        "analyzed_records": 20,
+        "total_records": 27,
+        "analyzed_records": 23,
         "active_failures": 1,
-        "censored_data": 23
+        "censored_data": 26,
+        "analyzed_failures": 1,
+        "analyzed_censored": 22,
+        "km_curve": {
+            "label": "wmouse",
+            "estimable": true,
+            "reason": null,
+            "n": 27,
+            "events": 1,
+            "censored": 26,
+            "points": [
+                {
+                    "month": 0.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 27
+                },
+                {
+                    "month": 3.0,
+                    "survival": 0.9615,
+                    "lower": 0.7569,
+                    "upper": 0.9945,
+                    "at_risk": 25
+                },
+                {
+                    "month": 6.0,
+                    "survival": 0.9615,
+                    "lower": 0.7569,
+                    "upper": 0.9945,
+                    "at_risk": 24
+                },
+                {
+                    "month": 9.0,
+                    "survival": 0.9615,
+                    "lower": 0.7569,
+                    "upper": 0.9945,
+                    "at_risk": 21
+                },
+                {
+                    "month": 12.0,
+                    "survival": 0.9615,
+                    "lower": 0.7569,
+                    "upper": 0.9945,
+                    "at_risk": 21
+                },
+                {
+                    "month": 18.0,
+                    "survival": 0.9615,
+                    "lower": 0.7569,
+                    "upper": 0.9945,
+                    "at_risk": 18
+                },
+                {
+                    "month": 24.0,
+                    "survival": 0.9615,
+                    "lower": 0.7569,
+                    "upper": 0.9945,
+                    "at_risk": 17
+                },
+                {
+                    "month": 30.0,
+                    "survival": 0.9615,
+                    "lower": 0.7569,
+                    "upper": 0.9945,
+                    "at_risk": 14
+                },
+                {
+                    "month": 36.0,
+                    "survival": 0.9615,
+                    "lower": 0.7569,
+                    "upper": 0.9945,
+                    "at_risk": 13
+                },
+                {
+                    "month": 48.0,
+                    "survival": 0.9615,
+                    "lower": 0.7569,
+                    "upper": 0.9945,
+                    "at_risk": 7
+                },
+                {
+                    "month": 137.0,
+                    "survival": 0.9615,
+                    "lower": 0.7569,
+                    "upper": 0.9945,
+                    "at_risk": 1
+                }
+            ],
+            "median_survival_months": null,
+            "restricted_mean_months": 23.13,
+            "max_followup_months": 137.0
+        }
     },
     "powerbank": {
         "model_comparison": {
             "cox_ph_c_index": null,
-            "rsf_c_index": null
+            "rsf_c_index": null,
+            "fit_state": "no_events",
+            "fit_note": "No failures recorded across 27 analysed powerbank records \u2014 survival models are unidentifiable."
         },
         "hazard_ratios": {},
-        "total_records": 33,
-        "analyzed_records": 26,
-        "active_failures": 0,
-        "censored_data": 33
+        "total_records": 36,
+        "analyzed_records": 27,
+        "active_failures": 1,
+        "censored_data": 35,
+        "analyzed_failures": 0,
+        "analyzed_censored": 27,
+        "km_curve": {
+            "label": "powerbank",
+            "estimable": true,
+            "reason": null,
+            "n": 36,
+            "events": 1,
+            "censored": 35,
+            "points": [
+                {
+                    "month": 0.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 36
+                },
+                {
+                    "month": 3.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 35
+                },
+                {
+                    "month": 6.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 32
+                },
+                {
+                    "month": 9.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 28
+                },
+                {
+                    "month": 12.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 25
+                },
+                {
+                    "month": 18.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 21
+                },
+                {
+                    "month": 24.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 21
+                },
+                {
+                    "month": 30.0,
+                    "survival": 0.9412,
+                    "lower": 0.6502,
+                    "upper": 0.9915,
+                    "at_risk": 17
+                },
+                {
+                    "month": 36.0,
+                    "survival": 0.9412,
+                    "lower": 0.6502,
+                    "upper": 0.9915,
+                    "at_risk": 15
+                },
+                {
+                    "month": 48.0,
+                    "survival": 0.9412,
+                    "lower": 0.6502,
+                    "upper": 0.9915,
+                    "at_risk": 9
+                },
+                {
+                    "month": 123.0,
+                    "survival": 0.9412,
+                    "lower": 0.6502,
+                    "upper": 0.9915,
+                    "at_risk": 1
+                }
+            ],
+            "median_survival_months": null,
+            "restricted_mean_months": 24.0,
+            "max_followup_months": 123.0
+        }
     },
     "keyboard": {
         "model_comparison": {
             "cox_ph_c_index": 0.917,
-            "rsf_c_index": 1.0
+            "rsf_c_index": 1.0,
+            "fit_state": "ok",
+            "fit_note": null
         },
         "hazard_ratios": {
             "keyboard_KB6": 0.94,
             "keyboard_KB7": 0.71
         },
-        "total_records": 22,
+        "total_records": 23,
         "analyzed_records": 18,
-        "active_failures": 2,
-        "censored_data": 20
+        "active_failures": 3,
+        "censored_data": 20,
+        "analyzed_failures": 1,
+        "analyzed_censored": 17,
+        "km_curve": {
+            "label": "keyboard",
+            "estimable": true,
+            "reason": null,
+            "n": 23,
+            "events": 3,
+            "censored": 20,
+            "points": [
+                {
+                    "month": 0.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 23
+                },
+                {
+                    "month": 3.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 23
+                },
+                {
+                    "month": 6.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 21
+                },
+                {
+                    "month": 9.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 21
+                },
+                {
+                    "month": 12.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 21
+                },
+                {
+                    "month": 18.0,
+                    "survival": 0.9444,
+                    "lower": 0.6664,
+                    "upper": 0.992,
+                    "at_risk": 18
+                },
+                {
+                    "month": 24.0,
+                    "survival": 0.8889,
+                    "lower": 0.6242,
+                    "upper": 0.971,
+                    "at_risk": 15
+                },
+                {
+                    "month": 30.0,
+                    "survival": 0.8148,
+                    "lower": 0.5226,
+                    "upper": 0.9374,
+                    "at_risk": 12
+                },
+                {
+                    "month": 36.0,
+                    "survival": 0.8148,
+                    "lower": 0.5226,
+                    "upper": 0.9374,
+                    "at_risk": 10
+                },
+                {
+                    "month": 48.0,
+                    "survival": 0.8148,
+                    "lower": 0.5226,
+                    "upper": 0.9374,
+                    "at_risk": 8
+                },
+                {
+                    "month": 107.0,
+                    "survival": 0.8148,
+                    "lower": 0.5226,
+                    "upper": 0.9374,
+                    "at_risk": 1
+                }
+            ],
+            "median_survival_months": null,
+            "restricted_mean_months": 23.5,
+            "max_followup_months": 107.0
+        }
     },
     "hub": {
         "model_comparison": {
-            "cox_ph_c_index": 0.971,
-            "rsf_c_index": 0.765
+            "cox_ph_c_index": 0.972,
+            "rsf_c_index": 0.778,
+            "fit_state": "ok",
+            "fit_note": null
         },
         "hazard_ratios": {
-            "hub_HUB6": 0.53,
-            "hub_HUB7": 0.82
+            "hub_HUB6": 0.52,
+            "hub_HUB7": 0.83
         },
         "total_records": 18,
         "analyzed_records": 14,
         "active_failures": 3,
-        "censored_data": 15
+        "censored_data": 15,
+        "analyzed_failures": 3,
+        "analyzed_censored": 11,
+        "km_curve": {
+            "label": "hub",
+            "estimable": true,
+            "reason": null,
+            "n": 18,
+            "events": 3,
+            "censored": 15,
+            "points": [
+                {
+                    "month": 0.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 18
+                },
+                {
+                    "month": 3.0,
+                    "survival": 1.0,
+                    "lower": 1.0,
+                    "upper": 1.0,
+                    "at_risk": 17
+                },
+                {
+                    "month": 6.0,
+                    "survival": 0.9375,
+                    "lower": 0.6323,
+                    "upper": 0.991,
+                    "at_risk": 14
+                },
+                {
+                    "month": 9.0,
+                    "survival": 0.9375,
+                    "lower": 0.6323,
+                    "upper": 0.991,
+                    "at_risk": 14
+                },
+                {
+                    "month": 12.0,
+                    "survival": 0.9375,
+                    "lower": 0.6323,
+                    "upper": 0.991,
+                    "at_risk": 13
+                },
+                {
+                    "month": 18.0,
+                    "survival": 0.9375,
+                    "lower": 0.6323,
+                    "upper": 0.991,
+                    "at_risk": 12
+                },
+                {
+                    "month": 24.0,
+                    "survival": 0.9375,
+                    "lower": 0.6323,
+                    "upper": 0.991,
+                    "at_risk": 11
+                },
+                {
+                    "month": 30.0,
+                    "survival": 0.8438,
+                    "lower": 0.4931,
+                    "upper": 0.96,
+                    "at_risk": 10
+                },
+                {
+                    "month": 36.0,
+                    "survival": 0.8438,
+                    "lower": 0.4931,
+                    "upper": 0.96,
+                    "at_risk": 7
+                },
+                {
+                    "month": 48.0,
+                    "survival": 0.8438,
+                    "lower": 0.4931,
+                    "upper": 0.96,
+                    "at_risk": 4
+                },
+                {
+                    "month": 120.0,
+                    "survival": 0.6328,
+                    "lower": 0.1727,
+                    "upper": 0.8876,
+                    "at_risk": 1
+                }
+            ],
+            "median_survival_months": null,
+            "restricted_mean_months": 22.78,
+            "max_followup_months": 120.0
+        }
+    },
+    "_brands": {
+        "rates": [
+            {
+                "brand": "Boat",
+                "n": 32,
+                "events": 7,
+                "exposure": 842,
+                "rate": 0.83,
+                "lo": 0.33,
+                "hi": 1.71
+            },
+            {
+                "brand": "Unbranded / Local",
+                "n": 63,
+                "events": 4,
+                "exposure": 2074,
+                "rate": 0.19,
+                "lo": 0.05,
+                "hi": 0.49
+            },
+            {
+                "brand": "Zebronics",
+                "n": 10,
+                "events": 4,
+                "exposure": 343,
+                "rate": 1.16,
+                "lo": 0.32,
+                "hi": 2.98
+            },
+            {
+                "brand": "Portronics",
+                "n": 16,
+                "events": 2,
+                "exposure": 206,
+                "rate": 0.97,
+                "lo": 0.12,
+                "hi": 3.51
+            },
+            {
+                "brand": "HP",
+                "n": 22,
+                "events": 1,
+                "exposure": 834,
+                "rate": 0.12,
+                "lo": 0.0,
+                "hi": 0.67
+            },
+            {
+                "brand": "JBL",
+                "n": 8,
+                "events": 1,
+                "exposure": 287,
+                "rate": 0.35,
+                "lo": 0.01,
+                "hi": 1.94
+            },
+            {
+                "brand": "Mi",
+                "n": 8,
+                "events": 1,
+                "exposure": 388,
+                "rate": 0.26,
+                "lo": 0.01,
+                "hi": 1.44
+            },
+            {
+                "brand": "OEM (bundled)",
+                "n": 27,
+                "events": 1,
+                "exposure": 597,
+                "rate": 0.17,
+                "lo": 0.0,
+                "hi": 0.93
+            },
+            {
+                "brand": "Ambrane",
+                "n": 8,
+                "events": 0,
+                "exposure": 313,
+                "rate": 0.0,
+                "lo": 0.0,
+                "hi": 1.18
+            },
+            {
+                "brand": "SanDisk",
+                "n": 11,
+                "events": 0,
+                "exposure": 529,
+                "rate": 0.0,
+                "lo": 0.0,
+                "hi": 0.7
+            }
+        ],
+        "tiers": {
+            "named": {
+                "n": 201,
+                "events": 22,
+                "rate": 0.29,
+                "lo": 0.18,
+                "hi": 0.44
+            },
+            "unbranded": {
+                "n": 90,
+                "events": 5,
+                "rate": 0.19,
+                "lo": 0.06,
+                "hi": 0.44
+            },
+            "chi2": 0.83,
+            "p": 0.3617
+        },
+        "logrank": {
+            "chi2": 20.58,
+            "df": 9,
+            "p": 0.0146,
+            "k": 10
+        }
+    },
+    "_models": {
+        "cox_in": 0.571,
+        "rsf_in": 0.849,
+        "cox_cv": 0.516,
+        "cox_cv_sd": 0.089,
+        "rsf_cv": 0.399,
+        "rsf_cv_sd": 0.115,
+        "folds": 5,
+        "covariates": [
+            {
+                "label": "Price band (per \u20b91,000)",
+                "hr": 1.023,
+                "lo": 0.915,
+                "hi": 1.143,
+                "p": 0.689
+            },
+            {
+                "label": "Care score (per point)",
+                "hr": 0.976,
+                "lo": 0.736,
+                "hi": 1.294,
+                "p": 0.865
+            },
+            {
+                "label": "Unbranded / OEM (vs. named brand)",
+                "hr": 0.735,
+                "lo": 0.381,
+                "hi": 1.416,
+                "p": 0.357
+            }
+        ]
+    },
+    "_impact": {
+        "L0": 23.0,
+        "F": 27,
+        "w": 0.045,
+        "rows": [
+            {
+                "L": 28,
+                "r": 0.217,
+                "mass": 0.22
+            },
+            {
+                "L": 30,
+                "r": 0.304,
+                "mass": 0.28
+            },
+            {
+                "L": 34,
+                "r": 0.478,
+                "mass": 0.39
+            },
+            {
+                "L": 46,
+                "r": 1.0,
+                "mass": 0.61
+            }
+        ]
+    },
+    "_records": [
+        {
+            "d": "tws",
+            "t": 53.0,
+            "e": 0,
+            "p": 5.0
+        },
+        {
+            "d": "tws",
+            "t": 71.0,
+            "e": 0,
+            "p": 5.0
+        },
+        {
+            "d": "headphones",
+            "t": 3.0,
+            "e": 0,
+            "p": 0.25
+        },
+        {
+            "d": "cables",
+            "t": 6.0,
+            "e": 0,
+            "p": 0.05
+        },
+        {
+            "d": "gwmouse",
+            "t": 9.0,
+            "e": 0,
+            "p": 0.8
+        },
+        {
+            "d": "smartwatch",
+            "t": 18.0,
+            "e": 1,
+            "p": 2.0
+        },
+        {
+            "d": "usbdrive",
+            "t": 144.0,
+            "e": 0,
+            "p": 0.7
+        },
+        {
+            "d": "headphones",
+            "t": 27.0,
+            "e": 0,
+            "p": 7.0
+        },
+        {
+            "d": "cables",
+            "t": 19.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "wmouse",
+            "t": 43.0,
+            "e": 0,
+            "p": 3.5
+        },
+        {
+            "d": "powerbank",
+            "t": 3.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "smartwatch",
+            "t": 9.0,
+            "e": 0,
+            "p": 10.0
+        },
+        {
+            "d": "tws",
+            "t": 5.0,
+            "e": 0,
+            "p": 3.0
+        },
+        {
+            "d": "headphones",
+            "t": 1.5,
+            "e": 1,
+            "p": 1.0
+        },
+        {
+            "d": "cables",
+            "t": 98.0,
+            "e": 0,
+            "p": 0.1
+        },
+        {
+            "d": "keyboard",
+            "t": 62.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "powerbank",
+            "t": 6.0,
+            "e": 0,
+            "p": 1.5
+        },
+        {
+            "d": "smartwatch",
+            "t": 52.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "tws",
+            "t": 39.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "headphones",
+            "t": 9.0,
+            "e": 1,
+            "p": 0.5
+        },
+        {
+            "d": "cables",
+            "t": 3.0,
+            "e": 0,
+            "p": 0.1
+        },
+        {
+            "d": "wmouse",
+            "t": 18.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "gwmouse",
+            "t": 71.0,
+            "e": 0,
+            "p": 0.4
+        },
+        {
+            "d": "keyboard",
+            "t": 24.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "hub",
+            "t": 3.0,
+            "e": 0,
+            "p": 0.25
+        },
+        {
+            "d": "powerbank",
+            "t": 110.0,
+            "e": 0,
+            "p": 1.5
+        },
+        {
+            "d": "smartwatch",
+            "t": 15.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "usbdrive",
+            "t": 59.0,
+            "e": 0,
+            "p": 0.2
+        },
+        {
+            "d": "tws",
+            "t": 6.0,
+            "e": 0,
+            "p": 5.0
+        },
+        {
+            "d": "headphones",
+            "t": 12.0,
+            "e": 0,
+            "p": 3.5
+        },
+        {
+            "d": "gwmouse",
+            "t": 29.0,
+            "e": 0,
+            "p": 3.0
+        },
+        {
+            "d": "keyboard",
+            "t": 15.0,
+            "e": 0,
+            "p": 8.0
+        },
+        {
+            "d": "tws",
+            "t": 4.0,
+            "e": 0,
+            "p": 5.0
+        },
+        {
+            "d": "cables",
+            "t": 33.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "powerbank",
+            "t": 3.0,
+            "e": 0,
+            "p": 1.5
+        },
+        {
+            "d": "tws",
+            "t": 8.0,
+            "e": 0,
+            "p": 3.0
+        },
+        {
+            "d": "cables",
+            "t": 25.0,
+            "e": 0,
+            "p": 0.3
+        },
+        {
+            "d": "hub",
+            "t": 26.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "powerbank",
+            "t": 84.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "smartwatch",
+            "t": 61.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "tws",
+            "t": 14.0,
+            "e": 0,
+            "p": 5.0
+        },
+        {
+            "d": "headphones",
+            "t": 25.0,
+            "e": 0,
+            "p": 7.0
+        },
+        {
+            "d": "cables",
+            "t": 25.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "gwmouse",
+            "t": 35.0,
+            "e": 0,
+            "p": 1.5
+        },
+        {
+            "d": "keyboard",
+            "t": 83.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "hub",
+            "t": 35.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "powerbank",
+            "t": 47.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "usbdrive",
+            "t": 47.0,
+            "e": 0,
+            "p": 0.4
+        },
+        {
+            "d": "smartwatch",
+            "t": 33.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "headphones",
+            "t": 5.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "cables",
+            "t": 40.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "headphones",
+            "t": 51.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "tws",
+            "t": 37.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "headphones",
+            "t": 38.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "cables",
+            "t": 10.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "wmouse",
+            "t": 46.0,
+            "e": 0,
+            "p": 0.6
+        },
+        {
+            "d": "gwmouse",
+            "t": 22.0,
+            "e": 0,
+            "p": 1.5
+        },
+        {
+            "d": "keyboard",
+            "t": 22.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "powerbank",
+            "t": 37.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "smartwatch",
+            "t": 37.0,
+            "e": 0,
+            "p": 6.0
+        },
+        {
+            "d": "usbdrive",
+            "t": 37.0,
+            "e": 0,
+            "p": 0.7
+        },
+        {
+            "d": "tws",
+            "t": 14.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "headphones",
+            "t": 14.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "powerbank",
+            "t": 40.0,
+            "e": 0,
+            "p": 1.5
+        },
+        {
+            "d": "tws",
+            "t": 19.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "headphones",
+            "t": 28.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "cables",
+            "t": 20.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "wmouse",
+            "t": 36.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "hub",
+            "t": 38.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "powerbank",
+            "t": 25.0,
+            "e": 0,
+            "p": 2.5
+        },
+        {
+            "d": "usbdrive",
+            "t": 55.0,
+            "e": 0,
+            "p": 1.2
+        },
+        {
+            "d": "tws",
+            "t": 55.0,
+            "e": 0,
+            "p": 0.25
+        },
+        {
+            "d": "cables",
+            "t": 73.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "gwmouse",
+            "t": 9.0,
+            "e": 1,
+            "p": 1.5
+        },
+        {
+            "d": "keyboard",
+            "t": 64.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "cables",
+            "t": 15.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "tws",
+            "t": 11.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "hub",
+            "t": 4.5,
+            "e": 1,
+            "p": 0.5
+        },
+        {
+            "d": "powerbank",
+            "t": 108.0,
+            "e": 0,
+            "p": 1.5
+        },
+        {
+            "d": "tws",
+            "t": 21.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "cables",
+            "t": 58.0,
+            "e": 0,
+            "p": 0.3
+        },
+        {
+            "d": "wmouse",
+            "t": 14.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "keyboard",
+            "t": 37.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "powerbank",
+            "t": 87.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "smartwatch",
+            "t": 21.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "tws",
+            "t": 140.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "tws",
+            "t": 9.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "cables",
+            "t": 29.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "wmouse",
+            "t": 6.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "keyboard",
+            "t": 26.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "powerbank",
+            "t": 27.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "smartwatch",
+            "t": 19.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "usbdrive",
+            "t": 24.0,
+            "e": 0,
+            "p": 0.7
+        },
+        {
+            "d": "cables",
+            "t": 9.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "wmouse",
+            "t": 26.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "headphones",
+            "t": 86.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "cables",
+            "t": 6.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "gwmouse",
+            "t": 50.0,
+            "e": 0,
+            "p": 0.8
+        },
+        {
+            "d": "smartwatch",
+            "t": 25.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "tws",
+            "t": 10.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "headphones",
+            "t": 75.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "cables",
+            "t": 7.0,
+            "e": 0,
+            "p": 0.1
+        },
+        {
+            "d": "gwmouse",
+            "t": 1.5,
+            "e": 1,
+            "p": 0.2
+        },
+        {
+            "d": "hub",
+            "t": 41.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "powerbank",
+            "t": 30.0,
+            "e": 0,
+            "p": 1.5
+        },
+        {
+            "d": "smartwatch",
+            "t": 58.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "usbdrive",
+            "t": 85.0,
+            "e": 0,
+            "p": 0.2
+        },
+        {
+            "d": "cables",
+            "t": 22.0,
+            "e": 0,
+            "p": 0.3
+        },
+        {
+            "d": "tws",
+            "t": 19.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "cables",
+            "t": 15.0,
+            "e": 0,
+            "p": 0.3
+        },
+        {
+            "d": "headphones",
+            "t": 108.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "wmouse",
+            "t": 14.0,
+            "e": 0,
+            "p": 3.5
+        },
+        {
+            "d": "keyboard",
+            "t": 14.0,
+            "e": 0,
+            "p": 8.0
+        },
+        {
+            "d": "tws",
+            "t": 14.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "gwmouse",
+            "t": 22.0,
+            "e": 0,
+            "p": 0.4
+        },
+        {
+            "d": "cables",
+            "t": 4.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "headphones",
+            "t": 3.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "smartwatch",
+            "t": 71.0,
+            "e": 0,
+            "p": 10.0
+        },
+        {
+            "d": "powerbank",
+            "t": 108.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "headphones",
+            "t": 10.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "cables",
+            "t": 24.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "wmouse",
+            "t": 3.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "smartwatch",
+            "t": 43.0,
+            "e": 0,
+            "p": 3.5
+        },
+        {
+            "d": "headphones",
+            "t": 18.0,
+            "e": 1,
+            "p": 7.0
+        },
+        {
+            "d": "tws",
+            "t": 18.0,
+            "e": 1,
+            "p": 5.0
+        },
+        {
+            "d": "cables",
+            "t": 40.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "wmouse",
+            "t": 1.5,
+            "e": 1,
+            "p": 0.3
+        },
+        {
+            "d": "gwmouse",
+            "t": 1.5,
+            "e": 1,
+            "p": 0.8
+        },
+        {
+            "d": "keyboard",
+            "t": 46.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "hub",
+            "t": 71.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "powerbank",
+            "t": 41.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "smartwatch",
+            "t": 18.0,
+            "e": 1,
+            "p": 10.0
+        },
+        {
+            "d": "cables",
+            "t": 15.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "headphones",
+            "t": 36.0,
+            "e": 1,
+            "p": 2.0
+        },
+        {
+            "d": "powerbank",
+            "t": 14.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "smartwatch",
+            "t": 23.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "wmouse",
+            "t": 68.0,
+            "e": 0,
+            "p": 0.6
+        },
+        {
+            "d": "powerbank",
+            "t": 40.0,
+            "e": 0,
+            "p": 2.5
+        },
+        {
+            "d": "keyboard",
+            "t": 68.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "smartwatch",
+            "t": 35.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "headphones",
+            "t": 68.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "cables",
+            "t": 15.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "gwmouse",
+            "t": 50.0,
+            "e": 0,
+            "p": 0.4
+        },
+        {
+            "d": "tws",
+            "t": 42.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "cables",
+            "t": 31.0,
+            "e": 0,
+            "p": 0.1
+        },
+        {
+            "d": "hub",
+            "t": 20.0,
+            "e": 0,
+            "p": 0.25
+        },
+        {
+            "d": "smartwatch",
+            "t": 59.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "wmouse",
+            "t": 59.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "hub",
+            "t": 30.0,
+            "e": 1,
+            "p": 2.0
+        },
+        {
+            "d": "gwmouse",
+            "t": 26.0,
+            "e": 0,
+            "p": 1.5
+        },
+        {
+            "d": "keyboard",
+            "t": 21.0,
+            "e": 1,
+            "p": 1.0
+        },
+        {
+            "d": "smartwatch",
+            "t": 0.5,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "powerbank",
+            "t": 8.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "tws",
+            "t": 31.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "cables",
+            "t": 43.0,
+            "e": 0,
+            "p": 0.1
+        },
+        {
+            "d": "keyboard",
+            "t": 29.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "headphones",
+            "t": 30.0,
+            "e": 1,
+            "p": 1.0
+        },
+        {
+            "d": "cables",
+            "t": 15.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "wmouse",
+            "t": 29.0,
+            "e": 0,
+            "p": 0.6
+        },
+        {
+            "d": "powerbank",
+            "t": 9.0,
+            "e": 0,
+            "p": 0.25
+        },
+        {
+            "d": "cables",
+            "t": 48.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "tws",
+            "t": 24.0,
+            "e": 0,
+            "p": 5.0
+        },
+        {
+            "d": "headphones",
+            "t": 4.5,
+            "e": 1,
+            "p": 1.0
+        },
+        {
+            "d": "powerbank",
+            "t": 37.0,
+            "e": 0,
+            "p": 4.0
+        },
+        {
+            "d": "powerbank",
+            "t": 12.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "tws",
+            "t": 54.0,
+            "e": 0,
+            "p": 5.0
+        },
+        {
+            "d": "wmouse",
+            "t": 29.0,
+            "e": 0,
+            "p": 0.6
+        },
+        {
+            "d": "gwmouse",
+            "t": 13.0,
+            "e": 0,
+            "p": 1.5
+        },
+        {
+            "d": "keyboard",
+            "t": 3.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "hub",
+            "t": 1.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "smartwatch",
+            "t": 11.0,
+            "e": 0,
+            "p": 10.0
+        },
+        {
+            "d": "tws",
+            "t": 18.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "cables",
+            "t": 26.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "hub",
+            "t": 40.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "tws",
+            "t": 30.0,
+            "e": 1,
+            "p": 0.5
+        },
+        {
+            "d": "headphones",
+            "t": 22.0,
+            "e": 0,
+            "p": 7.0
+        },
+        {
+            "d": "cables",
+            "t": 12.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "wmouse",
+            "t": 53.0,
+            "e": 0,
+            "p": 3.5
+        },
+        {
+            "d": "gwmouse",
+            "t": 60.0,
+            "e": 0,
+            "p": 0.4
+        },
+        {
+            "d": "keyboard",
+            "t": 48.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "powerbank",
+            "t": 48.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "smartwatch",
+            "t": 93.0,
+            "e": 0,
+            "p": 10.0
+        },
+        {
+            "d": "usbdrive",
+            "t": 18.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "smartwatch",
+            "t": 49.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "headphones",
+            "t": 13.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "tws",
+            "t": 18.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "cables",
+            "t": 10.0,
+            "e": 0,
+            "p": 0.3
+        },
+        {
+            "d": "wmouse",
+            "t": 7.0,
+            "e": 0,
+            "p": 0.6
+        },
+        {
+            "d": "keyboard",
+            "t": 15.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "hub",
+            "t": 5.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "powerbank",
+            "t": 9.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "hub",
+            "t": 74.0,
+            "e": 0,
+            "p": 0.25
+        },
+        {
+            "d": "usbdrive",
+            "t": 52.0,
+            "e": 0,
+            "p": 0.7
+        },
+        {
+            "d": "tws",
+            "t": 39.0,
+            "e": 0,
+            "p": 0.25
+        },
+        {
+            "d": "headphones",
+            "t": 15.0,
+            "e": 0,
+            "p": 3.5
+        },
+        {
+            "d": "cables",
+            "t": 12.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "wmouse",
+            "t": 38.0,
+            "e": 0,
+            "p": 0.15
+        },
+        {
+            "d": "keyboard",
+            "t": 107.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "powerbank",
+            "t": 24.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "powerbank",
+            "t": 7.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "usbdrive",
+            "t": 51.0,
+            "e": 0,
+            "p": 0.4
+        },
+        {
+            "d": "tws",
+            "t": 9.0,
+            "e": 1,
+            "p": 0.5
+        },
+        {
+            "d": "headphones",
+            "t": 13.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "cables",
+            "t": 25.0,
+            "e": 0,
+            "p": 0.3
+        },
+        {
+            "d": "wmouse",
+            "t": 31.0,
+            "e": 0,
+            "p": 0.6
+        },
+        {
+            "d": "gwmouse",
+            "t": 32.0,
+            "e": 0,
+            "p": 0.8
+        },
+        {
+            "d": "keyboard",
+            "t": 32.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "hub",
+            "t": 14.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "smartwatch",
+            "t": 86.0,
+            "e": 0,
+            "p": 3.5
+        },
+        {
+            "d": "wmouse",
+            "t": 6.0,
+            "e": 0,
+            "p": 0.3
+        },
+        {
+            "d": "headphones",
+            "t": 11.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "keyboard",
+            "t": 71.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "cables",
+            "t": 9.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "gwmouse",
+            "t": 49.0,
+            "e": 0,
+            "p": 0.4
+        },
+        {
+            "d": "powerbank",
+            "t": 10.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "tws",
+            "t": 11.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "cables",
+            "t": 51.0,
+            "e": 0,
+            "p": 0.3
+        },
+        {
+            "d": "wmouse",
+            "t": 14.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "cables",
+            "t": 43.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "cables",
+            "t": 67.0,
+            "e": 0,
+            "p": 0.1
+        },
+        {
+            "d": "tws",
+            "t": 3.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "powerbank",
+            "t": 17.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "cables",
+            "t": 2.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "tws",
+            "t": 42.0,
+            "e": 0,
+            "p": 5.0
+        },
+        {
+            "d": "headphones",
+            "t": 31.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "headphones",
+            "t": 15.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "cables",
+            "t": 25.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "wmouse",
+            "t": 36.0,
+            "e": 0,
+            "p": 0.6
+        },
+        {
+            "d": "hub",
+            "t": 35.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "powerbank",
+            "t": 0.5,
+            "e": 0,
+            "p": 2.5
+        },
+        {
+            "d": "smartwatch",
+            "t": 36.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "usbdrive",
+            "t": 47.0,
+            "e": 0,
+            "p": 1.2
+        },
+        {
+            "d": "hub",
+            "t": 49.0,
+            "e": 1,
+            "p": 2.0
+        },
+        {
+            "d": "cables",
+            "t": 28.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "tws",
+            "t": 51.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "tws",
+            "t": 156.0,
+            "e": 0,
+            "p": 5.0
+        },
+        {
+            "d": "headphones",
+            "t": 97.0,
+            "e": 1,
+            "p": 0.5
+        },
+        {
+            "d": "cables",
+            "t": 72.0,
+            "e": 0,
+            "p": 0.05
+        },
+        {
+            "d": "gwmouse",
+            "t": 95.0,
+            "e": 0,
+            "p": 0.4
+        },
+        {
+            "d": "keyboard",
+            "t": 30.0,
+            "e": 1,
+            "p": 0.25
+        },
+        {
+            "d": "hub",
+            "t": 120.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "usbdrive",
+            "t": 39.0,
+            "e": 0,
+            "p": 0.7
+        },
+        {
+            "d": "tws",
+            "t": 26.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "cables",
+            "t": 13.0,
+            "e": 0,
+            "p": 0.3
+        },
+        {
+            "d": "wmouse",
+            "t": 98.0,
+            "e": 0,
+            "p": 0.6
+        },
+        {
+            "d": "keyboard",
+            "t": 98.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "powerbank",
+            "t": 14.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "smartwatch",
+            "t": 68.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "headphones",
+            "t": 23.0,
+            "e": 0,
+            "p": 3.5
+        },
+        {
+            "d": "cables",
+            "t": 26.0,
+            "e": 0,
+            "p": 0.1
+        },
+        {
+            "d": "smartwatch",
+            "t": 99.0,
+            "e": 0,
+            "p": 10.0
+        },
+        {
+            "d": "tws",
+            "t": 16.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "headphones",
+            "t": 109.0,
+            "e": 0,
+            "p": 3.5
+        },
+        {
+            "d": "cables",
+            "t": 100.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "powerbank",
+            "t": 96.0,
+            "e": 0,
+            "p": 2.5
+        },
+        {
+            "d": "cables",
+            "t": 10.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "tws",
+            "t": 13.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "headphones",
+            "t": 74.0,
+            "e": 0,
+            "p": 7.0
+        },
+        {
+            "d": "cables",
+            "t": 22.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "gwmouse",
+            "t": 26.0,
+            "e": 0,
+            "p": 0.8
+        },
+        {
+            "d": "powerbank",
+            "t": 26.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "tws",
+            "t": 3.0,
+            "e": 0,
+            "p": 5.0
+        },
+        {
+            "d": "headphones",
+            "t": 2.0,
+            "e": 0,
+            "p": 7.0
+        },
+        {
+            "d": "cables",
+            "t": 8.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "wmouse",
+            "t": 0.5,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "gwmouse",
+            "t": 5.0,
+            "e": 0,
+            "p": 3.0
+        },
+        {
+            "d": "keyboard",
+            "t": 3.0,
+            "e": 0,
+            "p": 4.0
+        },
+        {
+            "d": "hub",
+            "t": 9.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "powerbank",
+            "t": 6.0,
+            "e": 0,
+            "p": 1.5
+        },
+        {
+            "d": "smartwatch",
+            "t": 7.0,
+            "e": 0,
+            "p": 10.0
+        },
+        {
+            "d": "usbdrive",
+            "t": 11.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "wmouse",
+            "t": 137.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "powerbank",
+            "t": 123.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "tws",
+            "t": 1.5,
+            "e": 1,
+            "p": 0.25
+        },
+        {
+            "d": "wmouse",
+            "t": 101.0,
+            "e": 0,
+            "p": 0.6
+        },
+        {
+            "d": "smartwatch",
+            "t": 100.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "tws",
+            "t": 50.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "headphones",
+            "t": 18.0,
+            "e": 1,
+            "p": 1.0
+        },
+        {
+            "d": "cables",
+            "t": 18.0,
+            "e": 1,
+            "p": 0.3
+        },
+        {
+            "d": "wmouse",
+            "t": 39.0,
+            "e": 0,
+            "p": 0.15
+        },
+        {
+            "d": "keyboard",
+            "t": 18.0,
+            "e": 1,
+            "p": 2.0
+        },
+        {
+            "d": "cables",
+            "t": 10.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "powerbank",
+            "t": 30.0,
+            "e": 1,
+            "p": 1.5
+        },
+        {
+            "d": "tws",
+            "t": 16.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "powerbank",
+            "t": 4.0,
+            "e": 0,
+            "p": 1.0
+        },
+        {
+            "d": "tws",
+            "t": 59.0,
+            "e": 0,
+            "p": 2.0
+        },
+        {
+            "d": "cables",
+            "t": 49.0,
+            "e": 0,
+            "p": 0.3
+        },
+        {
+            "d": "powerbank",
+            "t": 79.0,
+            "e": 0,
+            "p": 0.5
+        },
+        {
+            "d": "smartwatch",
+            "t": 41.0,
+            "e": 0,
+            "p": 10.0
+        },
+        {
+            "d": "headphones",
+            "t": 9.0,
+            "e": 1,
+            "p": 1.0
+        },
+        {
+            "d": "wmouse",
+            "t": 125.0,
+            "e": 0,
+            "p": 0.6
+        }
+    ],
+    "_km_overall": {
+        "label": "all devices",
+        "estimable": true,
+        "reason": null,
+        "n": 291,
+        "events": 27,
+        "censored": 264,
+        "points": [
+            {
+                "month": 0.0,
+                "survival": 1.0,
+                "lower": 1.0,
+                "upper": 1.0,
+                "at_risk": 291
+            },
+            {
+                "month": 3.0,
+                "survival": 0.9826,
+                "lower": 0.9587,
+                "upper": 0.9927,
+                "at_risk": 280
+            },
+            {
+                "month": 6.0,
+                "survival": 0.9752,
+                "lower": 0.9486,
+                "upper": 0.9881,
+                "at_risk": 260
+            },
+            {
+                "month": 9.0,
+                "survival": 0.9593,
+                "lower": 0.9277,
+                "upper": 0.9773,
+                "at_risk": 246
+            },
+            {
+                "month": 12.0,
+                "survival": 0.9593,
+                "lower": 0.9277,
+                "upper": 0.9773,
+                "at_risk": 222
+            },
+            {
+                "month": 18.0,
+                "survival": 0.9238,
+                "lower": 0.8809,
+                "upper": 0.9517,
+                "at_risk": 189
+            },
+            {
+                "month": 24.0,
+                "survival": 0.9184,
+                "lower": 0.8742,
+                "upper": 0.9476,
+                "at_risk": 161
+            },
+            {
+                "month": 30.0,
+                "survival": 0.8834,
+                "lower": 0.8284,
+                "upper": 0.9216,
+                "at_risk": 131
+            },
+            {
+                "month": 36.0,
+                "survival": 0.8756,
+                "lower": 0.8184,
+                "upper": 0.9157,
+                "at_risk": 113
+            },
+            {
+                "month": 48.0,
+                "survival": 0.8756,
+                "lower": 0.8184,
+                "upper": 0.9157,
+                "at_risk": 77
+            },
+            {
+                "month": 156.0,
+                "survival": 0.8226,
+                "lower": 0.7055,
+                "upper": 0.8965,
+                "at_risk": 1
+            }
+        ],
+        "median_survival_months": null,
+        "restricted_mean_months": 23.0,
+        "max_followup_months": 156.0
+    },
+    "_km_comparison": {
+        "method": "pairwise log-rank",
+        "alpha": 0.05,
+        "pairs": [
+            {
+                "a": "headphones",
+                "b": "cables",
+                "p_value": 0.0022,
+                "test_statistic": 9.372,
+                "significant": true
+            },
+            {
+                "a": "headphones",
+                "b": "powerbank",
+                "p_value": 0.0049,
+                "test_statistic": 7.912,
+                "significant": true
+            },
+            {
+                "a": "headphones",
+                "b": "wmouse",
+                "p_value": 0.0154,
+                "test_statistic": 5.873,
+                "significant": true
+            },
+            {
+                "a": "headphones",
+                "b": "smartwatch",
+                "p_value": 0.0253,
+                "test_statistic": 5.001,
+                "significant": true
+            },
+            {
+                "a": "cables",
+                "b": "gwmouse",
+                "p_value": 0.0372,
+                "test_statistic": 4.34,
+                "significant": true
+            },
+            {
+                "a": "cables",
+                "b": "hub",
+                "p_value": 0.0634,
+                "test_statistic": 3.445,
+                "significant": false
+            },
+            {
+                "a": "tws",
+                "b": "headphones",
+                "p_value": 0.0807,
+                "test_statistic": 3.05,
+                "significant": false
+            },
+            {
+                "a": "gwmouse",
+                "b": "powerbank",
+                "p_value": 0.0885,
+                "test_statistic": 2.901,
+                "significant": false
+            },
+            {
+                "a": "powerbank",
+                "b": "hub",
+                "p_value": 0.0919,
+                "test_statistic": 2.841,
+                "significant": false
+            },
+            {
+                "a": "tws",
+                "b": "cables",
+                "p_value": 0.1316,
+                "test_statistic": 2.273,
+                "significant": false
+            },
+            {
+                "a": "headphones",
+                "b": "keyboard",
+                "p_value": 0.141,
+                "test_statistic": 2.167,
+                "significant": false
+            },
+            {
+                "a": "wmouse",
+                "b": "hub",
+                "p_value": 0.1447,
+                "test_statistic": 2.128,
+                "significant": false
+            },
+            {
+                "a": "cables",
+                "b": "keyboard",
+                "p_value": 0.1522,
+                "test_statistic": 2.05,
+                "significant": false
+            },
+            {
+                "a": "gwmouse",
+                "b": "wmouse",
+                "p_value": 0.1806,
+                "test_statistic": 1.793,
+                "significant": false
+            },
+            {
+                "a": "powerbank",
+                "b": "keyboard",
+                "p_value": 0.198,
+                "test_statistic": 1.657,
+                "significant": false
+            },
+            {
+                "a": "tws",
+                "b": "powerbank",
+                "p_value": 0.2077,
+                "test_statistic": 1.587,
+                "significant": false
+            },
+            {
+                "a": "smartwatch",
+                "b": "hub",
+                "p_value": 0.2133,
+                "test_statistic": 1.549,
+                "significant": false
+            },
+            {
+                "a": "wmouse",
+                "b": "keyboard",
+                "p_value": 0.2845,
+                "test_statistic": 1.146,
+                "significant": false
+            },
+            {
+                "a": "gwmouse",
+                "b": "smartwatch",
+                "p_value": 0.3198,
+                "test_statistic": 0.99,
+                "significant": false
+            },
+            {
+                "a": "tws",
+                "b": "wmouse",
+                "p_value": 0.3435,
+                "test_statistic": 0.898,
+                "significant": false
+            },
+            {
+                "a": "headphones",
+                "b": "hub",
+                "p_value": 0.4132,
+                "test_statistic": 0.67,
+                "significant": false
+            },
+            {
+                "a": "cables",
+                "b": "smartwatch",
+                "p_value": 0.4247,
+                "test_statistic": 0.637,
+                "significant": false
+            },
+            {
+                "a": "smartwatch",
+                "b": "keyboard",
+                "p_value": 0.4585,
+                "test_statistic": 0.55,
+                "significant": false
+            },
+            {
+                "a": "headphones",
+                "b": "gwmouse",
+                "p_value": 0.4997,
+                "test_statistic": 0.456,
+                "significant": false
+            },
+            {
+                "a": "tws",
+                "b": "smartwatch",
+                "p_value": 0.506,
+                "test_statistic": 0.442,
+                "significant": false
+            },
+            {
+                "a": "tws",
+                "b": "gwmouse",
+                "p_value": 0.5376,
+                "test_statistic": 0.38,
+                "significant": false
+            },
+            {
+                "a": "tws",
+                "b": "hub",
+                "p_value": 0.5578,
+                "test_statistic": 0.344,
+                "significant": false
+            },
+            {
+                "a": "smartwatch",
+                "b": "powerbank",
+                "p_value": 0.5966,
+                "test_statistic": 0.28,
+                "significant": false
+            },
+            {
+                "a": "smartwatch",
+                "b": "wmouse",
+                "p_value": 0.6662,
+                "test_statistic": 0.186,
+                "significant": false
+            },
+            {
+                "a": "keyboard",
+                "b": "hub",
+                "p_value": 0.6744,
+                "test_statistic": 0.177,
+                "significant": false
+            },
+            {
+                "a": "cables",
+                "b": "wmouse",
+                "p_value": 0.6857,
+                "test_statistic": 0.164,
+                "significant": false
+            },
+            {
+                "a": "gwmouse",
+                "b": "keyboard",
+                "p_value": 0.7341,
+                "test_statistic": 0.115,
+                "significant": false
+            },
+            {
+                "a": "wmouse",
+                "b": "powerbank",
+                "p_value": 0.8618,
+                "test_statistic": 0.03,
+                "significant": false
+            },
+            {
+                "a": "gwmouse",
+                "b": "hub",
+                "p_value": 0.9025,
+                "test_statistic": 0.015,
+                "significant": false
+            },
+            {
+                "a": "cables",
+                "b": "powerbank",
+                "p_value": 0.9446,
+                "test_statistic": 0.005,
+                "significant": false
+            },
+            {
+                "a": "tws",
+                "b": "keyboard",
+                "p_value": 0.9476,
+                "test_statistic": 0.004,
+                "significant": false
+            }
+        ],
+        "significant_pairs": 5
+    },
+    "_quality": {
+        "source_rows": 291,
+        "analyzed_rows": 291,
+        "checks": [
+            {
+                "key": "zero_duration",
+                "label": "Records with no elapsed service life",
+                "count": 0,
+                "rule": "purchase and observation fall in the same month, contributing no exposure; removed by preprocessing"
+            },
+            {
+                "key": "price_unparseable",
+                "label": "Stated prices that could not be read as a number",
+                "count": 0,
+                "rule": "the free-text price field contained no digits"
+            },
+            {
+                "key": "price_non_positive",
+                "label": "Prices at or below zero",
+                "count": 0,
+                "rule": "a parsed price of 0 or less, which no purchased device has"
+            },
+            {
+                "key": "price_range",
+                "label": "Observed price range, thousands of rupees: 0.05 to 10.00",
+                "count": 291,
+                "rule": "291 of 291 stated prices parsed successfully"
+            },
+            {
+                "key": "life_implausible",
+                "label": "Reported service lives beyond a plausible bound",
+                "count": 0,
+                "rule": "more than 156 months, which for budget hardware more likely reflects a remembered date than a measured one"
+            },
+            {
+                "key": "life_range",
+                "label": "Observed service life, months: 0.5 to 156.0",
+                "count": 291,
+                "rule": "range across every analysed record"
+            }
+        ],
+        "complete": true
     }
 }

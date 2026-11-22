@@ -1,32 +1,43 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Area, AreaChart, ResponsiveContainer, YAxis } from "recharts";
+/**
+ * One device readout module, styled as a plug-in instrument card: brushed
+ * housing, silkscreened ident, backlit LCD digits and a status lamp.
+ *
+ * Handles the unavailable case explicitly — a device whose model did not fit
+ * shows unlit segments and the reason, never a substituted number.
+ */
 
-export type TelemetryPoint = { t: string | number; v: number };
+import { motion } from "framer-motion";
+import type { FitState } from "@/lib/supabase-browser";
+import { Lamp, type LampTone } from "@/components/panel";
 
 export type TelemetryStatProps = {
-  id: string; // e.g. catalog / NORAD id — doubles as the card's structural label
+  /** Structural ident silkscreened on the housing. */
+  id: string;
   label: string;
-  value: number | string;
+  /** Null renders unlit segments rather than a placeholder value. */
+  value: number | string | null;
   unit?: string;
-  delta?: number; // signed, e.g. +2.4 or -0.8
-  status?: "nominal" | "watch" | "critical";
-  series?: TelemetryPoint[]; // sparkline data — pipe in real telemetry here
-  accent?: "violet" | "cyan";
-  index?: number; // used only for stagger timing, not displayed
+  /** Secondary count, e.g. observed failures. */
+  delta?: number;
+  deltaLabel?: string;
+  status?: "nominal" | "watch" | "critical" | "unavailable";
+  fitState?: FitState;
+  fitNote?: string | null;
+  selected?: boolean;
+  onSelect?: () => void;
+  index?: number;
 };
 
-const statusColor: Record<NonNullable<TelemetryStatProps["status"]>, string> = {
-  nominal: "text-signal-cyan",
-  watch: "text-signal-amber",
-  critical: "text-red-400",
-};
-
-const statusDot: Record<NonNullable<TelemetryStatProps["status"]>, string> = {
-  nominal: "bg-signal-cyan",
-  watch: "bg-signal-amber",
-  critical: "bg-red-400",
+const STATUS: Record<
+  NonNullable<TelemetryStatProps["status"]>,
+  { tone: LampTone; text: string; glow: string }
+> = {
+  nominal: { tone: "emerald", text: "text-lamp-emerald-hot", glow: "rgba(34,208,122,0.5)" },
+  watch: { tone: "amber", text: "text-lamp-amber-hot", glow: "rgba(255,176,32,0.5)" },
+  critical: { tone: "red", text: "text-lamp-red-hot", glow: "rgba(255,82,69,0.5)" },
+  unavailable: { tone: "neutral", text: "text-chassis-300", glow: "transparent" },
 };
 
 export default function TelemetryStat({
@@ -35,66 +46,68 @@ export default function TelemetryStat({
   value,
   unit,
   delta,
+  deltaLabel = "events",
   status = "nominal",
-  series,
-  accent = "violet",
+  fitNote,
+  selected = false,
+  onSelect,
   index = 0,
 }: TelemetryStatProps) {
-  const glassClass = accent === "violet" ? "glass-violet" : "glass-cyan";
-  const strokeColor = accent === "violet" ? "#7C5CFF" : "#00C2D1";
+  const s = STATUS[status];
+  const unavailable = value === null || status === "unavailable";
+
+  const Wrapper = onSelect ? motion.button : motion.div;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
+    <Wrapper
+      {...(onSelect ? { type: "button" as const, onClick: onSelect } : {})}
+      initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 0.5, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
-      className={`${glassClass} flex flex-col justify-between rounded-2xl p-5`}
+      viewport={{ once: true, margin: "-8%" }}
+      transition={{ duration: 0.4, delay: Math.min(index * 0.04, 0.32), ease: [0.22, 1, 0.36, 1] }}
+      title={fitNote ?? undefined}
+      aria-pressed={onSelect ? selected : undefined}
+      className={`metal-plate grain relative w-full rounded-xl p-[3px] text-left transition-transform duration-300 ${
+        onSelect ? "cursor-pointer hover:-translate-y-0.5" : ""
+      } ${selected ? "ring-2 ring-brass-hot/70" : ""}`}
     >
-      <div className="flex items-start justify-between">
-        <div>
-          <span className="eyebrow">{id}</span>
-          <p className="mt-1 text-sm text-ink-400">{label}</p>
+      <div className="rounded-[10px] px-3 py-2.5">
+        <div className="mb-2 flex items-center justify-between gap-2">
+          <span className="silkscreen truncate">{id}</span>
+          <Lamp tone={s.tone} size={6} pulse={status === "critical"} title={status} />
         </div>
-        <span className={`h-1.5 w-1.5 rounded-full ${statusDot[status]} mt-1`} />
-      </div>
 
-      <div className="mt-6 flex items-end justify-between gap-3">
-        <div className="flex items-baseline gap-1">
-          <span className="numeral text-4xl font-medium text-ink-100">{value}</span>
-          {unit && <span className="numeral text-sm text-ink-600">{unit}</span>}
+        {/* Recessed LCD window — flat background keeps digits legible. */}
+        <div className="lcd glass-glint rounded-md px-2.5 py-2">
+          <div className="flex items-baseline gap-1">
+            {unavailable ? (
+              <span className="numeral text-xl font-semibold leading-none text-chassis-300">
+                — —
+              </span>
+            ) : (
+              <span
+                className={`numeral text-xl font-semibold leading-none ${s.text}`}
+                style={{ textShadow: `0 0 14px ${s.glow}` }}
+              >
+                {typeof value === "number" ? value.toFixed(3) : value}
+              </span>
+            )}
+            {unit && !unavailable && <span className="silkscreen pb-0.5">{unit}</span>}
+            {unavailable && <span className="silkscreen pb-0.5 text-lamp-amber/80">n/a</span>}
+          </div>
         </div>
-        {typeof delta === "number" && (
-          <span className={`numeral text-xs ${delta >= 0 ? statusColor[status] : "text-red-400"}`}>
-            {delta >= 0 ? "+" : ""}
-            {delta}
+
+        <div className="mt-2 flex items-baseline justify-between gap-2">
+          <span className="truncate text-[10px] uppercase tracking-wider text-etch-dim">
+            {label}
           </span>
-        )}
-      </div>
-
-      {series && series.length > 1 && (
-        <div className="mt-4 h-12 w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={series} margin={{ top: 4, right: 0, bottom: 0, left: 0 }}>
-              <defs>
-                <linearGradient id={`spark-${id}`} x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor={strokeColor} stopOpacity={0.35} />
-                  <stop offset="100%" stopColor={strokeColor} stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <YAxis hide domain={["dataMin", "dataMax"]} />
-              <Area
-                type="monotone"
-                dataKey="v"
-                stroke={strokeColor}
-                strokeWidth={1.5}
-                fill={`url(#spark-${id})`}
-                isAnimationActive={false}
-              />
-            </AreaChart>
-          </ResponsiveContainer>
+          {delta !== undefined && (
+            <span className="numeral shrink-0 text-[10px] text-etch-faint">
+              {delta} <span className="silkscreen">{deltaLabel}</span>
+            </span>
+          )}
         </div>
-      )}
-    </motion.div>
+      </div>
+    </Wrapper>
   );
 }

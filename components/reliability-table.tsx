@@ -1,58 +1,161 @@
 'use client';
 
-interface TableRow {
+/**
+ * The survival summary table — an engraved data plate.
+ *
+ * Columns report what the pipeline actually estimates: median survival from the
+ * Kaplan-Meier fit (with "not reached" spelled out rather than blanked, since
+ * that is a finding), restricted mean survival time, observed events, and the
+ * concordance index only where a model genuinely fitted.
+ */
+
+import { Lamp, type LampTone } from '@/components/panel';
+import type { FitState } from '@/lib/supabase-browser';
+
+export interface ReliabilityRow {
   assetId: string;
   name: string;
   records: number;
-  cIndex: number;
-  status: string;
+  events: number;
+  /** Null means the median was never reached within follow-up. */
+  medianMonths: number | null;
+  rmstMonths: number | null;
+  cIndex: number | null;
+  fitState: FitState;
+  fitNote?: string | null;
+  estimable: boolean;
 }
 
-export default function ReliabilityTable({ rows }: { rows: TableRow[] }) {
-  return (
-    <div className="w-full max-w-6xl mx-auto px-6 py-12">
-      <div className="mb-6">
-        <span className="eyebrow text-cyan-400">RELIABILITY LEDGER</span>
-        <h2 className="font-display text-2xl font-bold uppercase tracking-tight text-white mt-1">
-          Hardware Stream Summary &amp; Concordance Index
-        </h2>
-        <p className="font-mono text-xs text-gray-400 mt-1">
-          Comprehensive statistical performance metrics across all tracked budget tech categories.
-        </p>
-      </div>
+export interface ReliabilityTableProps {
+  rows: ReliabilityRow[];
+  selectedDevice?: string;
+  onSelect?: (device: string) => void;
+}
 
-      <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-xl overflow-x-auto">
-        <table className="w-full text-left font-mono text-xs">
-          <thead>
-            <tr className="border-b border-white/10 text-cyan-400">
-              <th className="pb-3 font-normal uppercase tracking-wider">Asset ID</th>
-              <th className="pb-3 font-normal uppercase tracking-wider">Device Stream</th>
-              <th className="pb-3 font-normal uppercase tracking-wider">Analyzed Records</th>
-              <th className="pb-3 font-normal uppercase tracking-wider">Concordance (C-IDX)</th>
-              <th className="pb-3 font-normal uppercase tracking-wider">Status</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-white/5 text-gray-300">
-            {rows.map((row, idx) => (
-              <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
-                <td className="py-3 text-cyan-300">{row.assetId}</td>
-                <td className="py-3 font-bold text-white">{row.name}</td>
-                <td className="py-3">{row.records} units</td>
-                <td className="py-3 text-violet-400 font-bold">{Number(row.cIndex).toFixed(3)}</td>
-                <td className="py-3">
-                  <span className={`px-2.5 py-1 rounded text-[10px] uppercase font-bold ${
-                    row.status === 'nominal' 
-                      ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
-                      : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
-                  }`}>
-                    {row.status}
+function toneFor(row: ReliabilityRow): LampTone {
+  if (!row.estimable || row.fitState === 'no_events') return 'neutral';
+  if (row.cIndex === null) return 'amber';
+  return row.cIndex >= 0.8 ? 'emerald' : 'amber';
+}
+
+const HEADS: Array<[string, string]> = [
+  ['', ''],
+  ['ident', ''],
+  ['device', ''],
+  ['n', 'records analysed'],
+  ['events', 'observed failures'],
+  ['median', 'Kaplan-Meier median survival'],
+  ['rmst', 'restricted mean survival time'],
+  ['c-index', 'model concordance'],
+];
+
+export default function ReliabilityTable({
+  rows,
+  selectedDevice,
+  onSelect,
+}: ReliabilityTableProps) {
+  if (rows.length === 0) {
+    return <p className="py-8 text-center text-xs text-etch-faint">No devices to report.</p>;
+  }
+
+  return (
+    // Wide table scrolls inside its own container so the page body never
+    // scrolls sideways on a phone.
+    <div className="metal-well overflow-x-auto rounded-xl">
+      <table className="w-full min-w-[720px] border-collapse text-left">
+        <thead>
+          <tr className="border-b border-black/60">
+            {HEADS.map(([head, title], i) => (
+              <th
+                key={i}
+                title={title || undefined}
+                className={`silkscreen whitespace-nowrap px-3 py-2.5 font-normal ${
+                  i >= 3 ? 'text-right' : ''
+                }`}
+              >
+                {head}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => {
+            const selected = row.name === selectedDevice;
+            return (
+              <tr
+                key={row.assetId}
+                onClick={onSelect ? () => onSelect(row.name) : undefined}
+                className={`border-b border-etch/10 transition-colors duration-200 last:border-0 ${
+                  onSelect ? 'cursor-pointer hover:bg-white/40' : ''
+                } ${selected ? 'bg-brass/[0.09]' : ''}`}
+              >
+                <td className="px-3 py-2.5">
+                  <Lamp tone={toneFor(row)} size={6} title={row.fitState} />
+                </td>
+                <td className="numeral whitespace-nowrap px-3 py-2.5 text-[11px] text-etch-faint">
+                  {row.assetId}
+                </td>
+                <td
+                  className={`whitespace-nowrap px-3 py-2.5 text-[12px] uppercase tracking-wider ${
+                    selected ? 'text-etch-bright' : 'text-etch'
+                  }`}
+                >
+                  {row.name}
+                </td>
+                <td className="numeral px-3 py-2.5 text-right text-[12px] text-etch-dim">
+                  {row.records}
+                </td>
+                <td className="numeral px-3 py-2.5 text-right text-[12px]">
+                  <span className={row.events === 0 ? 'text-chassis-300' : 'text-ink-amber'}>
+                    {row.events}
                   </span>
                 </td>
+                <td className="numeral px-3 py-2.5 text-right text-[12px]">
+                  {!row.estimable ? (
+                    <span className="text-chassis-300" title={row.fitNote ?? undefined}>
+                      —
+                    </span>
+                  ) : row.medianMonths === null ? (
+                    // Distinct from missing: over half the units outlived follow-up.
+                    <span className="text-[10px] uppercase tracking-wide text-etch-faint">
+                      not reached
+                    </span>
+                  ) : (
+                    <span className="text-etch-bright">
+                      {row.medianMonths}
+                      <span className="silkscreen ml-1">mo</span>
+                    </span>
+                  )}
+                </td>
+                <td className="numeral px-3 py-2.5 text-right text-[12px] text-etch-dim">
+                  {row.rmstMonths === null ? (
+                    <span className="text-chassis-300">—</span>
+                  ) : (
+                    <>
+                      {row.rmstMonths}
+                      <span className="silkscreen ml-1">mo</span>
+                    </>
+                  )}
+                </td>
+                <td className="numeral px-3 py-2.5 text-right text-[12px]">
+                  {row.cIndex === null ? (
+                    <span
+                      className="text-[10px] uppercase tracking-wide text-ink-amber"
+                      title={row.fitNote ?? undefined}
+                    >
+                      n/a
+                    </span>
+                  ) : (
+                    <span className={row.cIndex >= 0.8 ? 'text-ink-emerald' : 'text-etch'}>
+                      {row.cIndex.toFixed(3)}
+                    </span>
+                  )}
+                </td>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 }

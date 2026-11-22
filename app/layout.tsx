@@ -24,8 +24,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "MERIDIAN — Constellation Intelligence",
-  description: "Real-time orbital telemetry and coverage intelligence.",
+  title: "Lifespan Matrix — Consumer Hardware Survival Analysis",
+  description:
+    "Live Kaplan-Meier survival analysis of budget consumer peripherals, updating as survey responses arrive.",
 };
 
 export default function RootLayout({

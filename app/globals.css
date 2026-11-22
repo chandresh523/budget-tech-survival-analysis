@@ -1,111 +1,433 @@
 @import "tailwindcss";
 
+/* ============================================================================
+   LIFESPAN MATRIX — Liquid Glass
+   ----------------------------------------------------------------------------
+   Apple's current material language (HIG + Liquid Glass) over the project's own
+   cyan/violet palette. Two rules carried from the HIG that shape everything:
+
+   1. Glass is a LENS, not paint. It refracts and specularly highlights what is
+      behind it; it never just tints. So every glass surface pairs a backdrop
+      blur with a saturation boost and a bright top edge.
+   2. Glass never stacks on glass. Nesting blurs turns a legible panel to mud.
+      Content inside a glass surface sits on flat fills.
+
+   Live flight state is published by the scroll controller as --accent,
+   --accent-2 and --velocity, so the DOM breathes with the same signal that
+   drives the WebGL background.
+   ========================================================================= */
+
 @theme {
-  /* colors */
+  /* Void + ink — the dark stage the glass sits on */
   --color-void: #03020a;
-  --color-ink-100: #f5f5f7;
-  --color-ink-400: #b8b6c4;
+  --color-void-2: #08061a;
+  --color-ink-100: #f5f5f7;  /* never #fff on dark — it vibrates */
+  --color-ink-300: #d6d4e0;
+  --color-ink-400: #a1a1a6;
   --color-ink-600: #8a8896;
   --color-ink-800: #4a4856;
-  --color-signal-violet: #7c5cff;
-  --color-signal-violet-dim: #4a3899;
+
+  /* Signals */
   --color-signal-cyan: #00c2d1;
-  --color-signal-cyan-dim: #0a5b62;
+  --color-signal-cyan-hot: #5ef2ff;
+  --color-signal-violet: #7c5cff;
+  --color-signal-violet-hot: #b9a3ff;
   --color-signal-amber: #ffb020;
+  --color-signal-amber-hot: #ffd166;
+  --color-signal-green: #22d07a;
+  --color-signal-green-hot: #6bf0ab;
+  --color-signal-pink: #ff4fa3;
+  --color-signal-red: #ff5245;
 
-  /* fonts */
-  --font-display: var(--font-syne), sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", var(--font-syne),
+    "Helvetica Neue", Arial, sans-serif;
   --font-numeric: var(--font-space-grotesk), monospace;
-  --font-body: var(--font-inter), sans-serif;
+  /* System stack first: renders true SF Pro on Apple hardware, which is where
+     this is demoed. Inter (already loaded) carries non-Apple browsers. */
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", var(--font-inter),
+    "Helvetica Neue", Arial, sans-serif;
 
-  /* shadows (glow borders) */
-  --shadow-glow-violet: 0 0 0 1px rgba(124, 92, 255, 0.35), 0 0 24px rgba(124, 92, 255, 0.15);
-  --shadow-glow-cyan: 0 0 0 1px rgba(0, 194, 209, 0.35), 0 0 24px rgba(0, 194, 209, 0.15);
-  --shadow-glow-violet-lg: 0 0 0 1px rgba(124, 92, 255, 0.4), 0 0 60px rgba(124, 92, 255, 0.25);
-  --shadow-glow-cyan-lg: 0 0 0 1px rgba(0, 194, 209, 0.4), 0 0 60px rgba(0, 194, 209, 0.2);
+  /* Apple's standard spring feel */
+  /* Apple's own curve, from the reference — not an approximation. */
+  --ease-apple: cubic-bezier(0.28, 0.11, 0.32, 1);
+  --ease-glass: cubic-bezier(0.28, 0.11, 0.32, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* letter spacing */
   --tracking-widest2: 0.32em;
+}
+
+@property --velocity {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+:root {
+  --accent: #00c2d1;
+  --accent-2: #7c5cff;
+  --velocity: 0;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 }
 
 @layer base {
   html {
     background: #03020a;
     color-scheme: dark;
+    /* The scroll controller drives everything; native smooth scrolling would
+       fight it and desynchronise the shader from the DOM. */
+    scroll-behavior: auto;
   }
   body {
-    @apply bg-void text-ink-100 font-body antialiased;
+    @apply text-ink-100 font-body antialiased;
+    /* A CSS aurora under the WebGL layer. The shader composites over this, so
+       the page still has depth and chapter colour if WebGL never starts —
+       which it may not on locked-down webviews or old GPUs. Tinted by the live
+       --accent, so even the fallback follows the story. */
+    background-color: #03020a;
+    background-image:
+      radial-gradient(110% 80% at 18% -10%, color-mix(in oklab, var(--accent) 22%, transparent) 0%, transparent 60%),
+      radial-gradient(90% 70% at 86% 8%, color-mix(in oklab, var(--accent-2) 18%, transparent) 0%, transparent 62%),
+      radial-gradient(120% 90% at 50% 115%, color-mix(in oklab, var(--accent) 12%, transparent) 0%, transparent 58%),
+      linear-gradient(180deg, #06041a 0%, #03020a 55%, #020109 100%);
+    background-attachment: fixed;
+    transition: background-image 700ms linear;
   }
-  ::selection {
-    background: rgba(124, 92, 255, 0.35);
-    color: #fff;
-  }
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #03020a;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: rgba(124, 92, 255, 0.25);
-    border-radius: 999px;
-    border: 2px solid #03020a;
-  }
-  :focus-visible {
-    outline: 1px solid #00c2d1;
-    outline-offset: 3px;
-  }
+  ::selection { background: color-mix(in oklab, var(--accent) 45%, transparent); color: #fff; }
+  ::-webkit-scrollbar { width: 0; height: 0; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 }
 
-/* Custom utilities (v4 @utility — usable directly as classNames, unlike @layer components + @apply) */
+/* ============================================================================
+   CONTENT LAYER
+   ----------------------------------------------------------------------------
+   Per the HIG, glass is for interactive CHROME only. Content cards are opaque
+   elevated steps off a near-black base — building them out of glass is the most
+   common way an "Apple-style" build ends up looking like 2015 frosted plastic.
+   ========================================================================= */
+
+/** Elevated content surface. Opaque, not blurred. */
+@utility surface {
+  background: #1d1d1f;
+  border: 1px solid rgb(255 255 255 / 0.08);
+}
+
+/** One step further up — nested content inside a surface. */
+@utility surface-2 {
+  background: #16151f;
+  border: 1px solid rgb(255 255 255 / 0.08);
+}
+
+/** Recessed well, for charts and readouts sitting inside a surface. */
+@utility surface-sunken {
+  background: #08070f;
+  border: 1px solid rgb(0 0 0 / 0.5);
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.4) inset;
+}
+
+/**
+ * Scroll edge effect — the progressive blur that separates floating chrome from
+ * the content sliding under it. The HIG asks for this instead of a hairline.
+ */
+@utility scroll-edge {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 132px;
+  pointer-events: none;
+  z-index: 40;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 34%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 34%, transparent 100%);
+}
+
+/* ============================================================================
+   FUNCTIONAL LAYER (Liquid Glass) — navigation and controls ONLY
+   ========================================================================= */
+
+/**
+ * The base Liquid Glass surface.
+ *
+ * saturate() is the part people leave out: without it a blur reads as frosted
+ * plastic. Boosting saturation is what makes it read as a lens with colour
+ * bending through it.
+ */
 @utility glass {
   position: relative;
-  background-color: rgb(255 255 255 / 0.04);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgb(255 255 255 / 0.06);
+  background: color-mix(in oklab, #ffffff 6%, transparent);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid color-mix(in oklab, #ffffff 12%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in oklab, #ffffff 22%, transparent) inset,
+    0 -20px 40px -20px color-mix(in oklab, #000 55%, transparent) inset,
+    0 24px 60px -24px rgb(0 0 0 / 0.75);
 }
 
-@utility glass-violet {
+/** Thicker, for surfaces that must float clearly above content. */
+@utility glass-thick {
   position: relative;
-  background-color: rgb(255 255 255 / 0.04);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(124, 92, 255, 0.25);
-  box-shadow: var(--shadow-glow-violet);
+  background: rgb(30 30 32 / 0.55);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid color-mix(in oklab, #ffffff 16%, transparent);
+  /* Specular top edge and rim only. The reference is explicit that drop
+     shadows on nav break the illusion, so there is no cast shadow here. */
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.55),
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.25);
 }
 
-@utility glass-cyan {
+/** Tinted by the active chapter. */
+@utility glass-accent {
   position: relative;
-  background-color: rgb(255 255 255 / 0.04);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(0, 194, 209, 0.25);
-  box-shadow: var(--shadow-glow-cyan);
+  background:
+    radial-gradient(120% 140% at 12% -20%, color-mix(in oklab, var(--accent) 20%, transparent) 0%, transparent 62%),
+    color-mix(in oklab, #ffffff 6%, transparent);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid color-mix(in oklab, var(--accent) 32%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in oklab, #ffffff 24%, transparent) inset,
+    0 24px 60px -28px color-mix(in oklab, var(--accent) 40%, transparent);
+}
+
+/** The moving specular highlight that makes glass look wet rather than matte. */
+@utility specular {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -40% -10%;
+    background: linear-gradient(
+      104deg,
+      transparent 38%,
+      color-mix(in oklab, #ffffff 14%, transparent) 48%,
+      color-mix(in oklab, #ffffff 22%, transparent) 51%,
+      color-mix(in oklab, #ffffff 14%, transparent) 54%,
+      transparent 64%
+    );
+    transform: translateX(calc(-30% + var(--velocity) * 60%));
+    transition: transform 400ms var(--ease-glass);
+    pointer-events: none;
+  }
+}
+
+/** Fine grain — kills banding on the big blurred gradients. */
+@utility grain {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image: var(--grain);
+    background-size: 140px 140px;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+}
+
+/* ============================================================================
+   CONTROLS
+   ========================================================================= */
+
+/** Apple's pill control. Grows a glass capsule behind itself when selected. */
+@utility pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  /* >= 44px tall including padding: the HIG hit-target minimum. */
+  min-height: 44px;
+  padding: 0.6rem 1.05rem;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--color-ink-400);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:
+    color 300ms var(--ease-glass),
+    background 300ms var(--ease-glass),
+    border-color 300ms var(--ease-glass),
+    transform 300ms var(--ease-glass);
+  &:hover { color: var(--color-ink-100); }
+  /* Press dims and shrinks slightly — never a ripple, never a lift. */
+  &:active { opacity: 0.8; transform: scale(0.97); }
+}
+
+@utility pill-active {
+  color: #fff;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--accent) 30%, transparent), color-mix(in oklab, var(--accent) 14%, transparent));
+  border-color: color-mix(in oklab, var(--accent) 55%, transparent);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.4);
+}
+
+/* ============================================================================
+   TYPE
+   ========================================================================= */
+
+/** Apple's marketing headline: very large, very tight, optically centred. */
+/** Marketing hero — the reference's exact scale. */
+@utility display {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+/** Section headline. */
+@utility display-2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+/** Marketing subhead: 21px, muted, positive tracking. */
+@utility subhead {
+  font-size: 21px;
+  line-height: 1.4;
+  letter-spacing: 0.011em;
+  color: #a1a1a6;
+}
+
+/** Body copy at the HIG's 17px baseline with its matching tracking. */
+@utility body-17 {
+  font-size: 17px;
+  line-height: 1.5;
+  letter-spacing: -0.003em;
+  color: var(--color-ink-300);
 }
 
 @utility numeral {
   font-family: var(--font-numeric);
   font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
 }
 
 @utility eyebrow {
   font-family: var(--font-numeric);
   font-size: 10px;
+  font-weight: 500;
   letter-spacing: var(--tracking-widest2);
   text-transform: uppercase;
-  color: var(--color-ink-600);
+  color: color-mix(in oklab, var(--accent) 78%, #ffffff);
 }
 
-@utility bg-void-radial {
-  background-image: radial-gradient(120% 100% at 50% -10%, rgba(124, 92, 255, 0.14) 0%, rgba(3, 2, 10, 0) 55%),
-    radial-gradient(80% 60% at 90% 10%, rgba(0, 194, 209, 0.1) 0%, rgba(3, 2, 10, 0) 60%);
+/** Gradient headline fill, tinted to the live chapter accent. */
+@utility accent-text {
+  background: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
+
+/* ============================================================================
+   MOTION
+   ========================================================================= */
+
+/** Sections recede and soften while the reader is in transit between chapters. */
+@utility chapter-panel {
+  transform: scale(calc(1 - var(--velocity) * 0.05)) translateY(calc(var(--velocity) * 20px));
+  opacity: calc(1 - var(--velocity) * 0.55);
+  filter: blur(calc(var(--velocity) * 5px));
+  transition:
+    transform 320ms var(--ease-glass),
+    opacity 320ms linear,
+    filter 320ms linear;
+  will-change: transform, opacity, filter;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(22px) scale(0.985); filter: blur(6px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+@utility rise { animation: rise 760ms var(--ease-out-expo) both; }
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+@utility breathe { animation: breathe 3s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
+  .chapter-panel { transform: none !important; filter: none !important; opacity: 1 !important; }
+}
+
+/* ---------------------------------------------------------------- glass fix --
+ * Re-declare the blur outside @utility.
+ *
+ * Tailwind v4 rewrites a `backdrop-filter` declaration inside an @utility body
+ * into its own var-composed form (`var(--tw-backdrop-blur) ...`). With no
+ * `backdrop-*` utility class on the element those variables are empty, so the
+ * property computed to `none` and every glass surface on the site has been a
+ * flat translucent fill with no blur behind it — measured: the nav reported
+ * `backdrop-filter: none` while its background and rim applied correctly.
+ *
+ * Declared here as a plain rule, where Tailwind leaves it alone. saturate() is
+ * the half people omit; without it a blur reads as frosted plastic rather than
+ * as a lens.
+ */
+.glass,
+.glass-thick,
+.glass-accent {
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+}
+.scroll-edge {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+/* --------------------------------------------------------- content glass ----
+ * Glass for the story page's CONTENT panels, not just its chrome.
+ *
+ * This is a deliberate departure from the house rule that glass is chrome-only
+ * and content cards are opaque. Asked for explicitly, and it holds together here
+ * because the story page sits over a live animated field: opaque cards on a
+ * moving background read as holes punched in it.
+ *
+ * The fill is heavier than the chrome recipe (0.58 rather than 0.55) and the
+ * sunken variant heavier still, because body copy has to stay legible over a
+ * field that is moving underneath it. Specular top edge and rim only — no cast
+ * shadow.
+ */
+@utility glass-panel {
+  position: relative;
+  background: rgb(30 30 32 / 0.58);
+  border: 1px solid color-mix(in oklab, #ffffff 13%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.42),
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.2);
+}
+@utility glass-panel-2 {
+  position: relative;
+  background: rgb(20 20 26 / 0.62);
+  border: 1px solid color-mix(in oklab, #ffffff 9%, transparent);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.22);
+}
+
+/* Same Tailwind v4 @utility caveat as the chrome glass above: a backdrop-filter
+   declared inside an @utility body is rewritten into an empty var chain and
+   computes to none. Declared out here instead. */
+.glass-panel,
+.glass-panel-2 {
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
 }

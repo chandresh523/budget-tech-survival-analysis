@@ -1,35 +1,30 @@
 "use client";
 
-import TelemetryStat, { TelemetryStatProps } from "./telemetry-stat";
+/**
+ * The rack of device readout modules. Doubles as the device selector — clicking
+ * a module latches it, which is why each card is a button when onSelect is set.
+ */
+
+import TelemetryStat, { type TelemetryStatProps } from "./telemetry-stat";
 
 export type TelemetryGridProps = {
-  eyebrow?: string;
-  title?: string;
-  data: Omit<TelemetryStatProps, "index">[]; // <- pipe your JSON array straight in here
+  data: Omit<TelemetryStatProps, "index">[];
 };
 
-export default function TelemetryGrid({
-  eyebrow = "SYSTEM STATUS",
-  title = "Constellation telemetry",
-  data,
-}: TelemetryGridProps) {
-  return (
-    <section className="relative bg-void px-6 py-28 md:px-14">
-      <div className="mb-12 flex flex-col gap-3 border-b border-white/[0.06] pb-8 md:flex-row md:items-end md:justify-between">
-        <div>
-          <span className="eyebrow">{eyebrow}</span>
-          <h2 className="mt-3 font-display text-4xl font-extrabold uppercase leading-none text-ink-100 md:text-6xl">
-            {title}
-          </h2>
-        </div>
-        <span className="numeral text-xs text-ink-600">{data.length} ACTIVE STREAMS</span>
-      </div>
+export default function TelemetryGrid({ data }: TelemetryGridProps) {
+  if (data.length === 0) {
+    return (
+      <p className="py-8 text-center text-xs text-etch-faint">
+        No device streams in the current payload.
+      </p>
+    );
+  }
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {data.map((item, i) => (
-          <TelemetryStat key={item.id} {...item} index={i} />
-        ))}
-      </div>
-    </section>
+  return (
+    <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
+      {data.map((item, i) => (
+        <TelemetryStat key={item.id} {...item} index={i} />
+      ))}
+    </div>
   );
 }
